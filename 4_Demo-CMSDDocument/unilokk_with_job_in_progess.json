@@ -1,0 +1,2854 @@
+{
+  "headerSection": {
+    "documentIdentifier": "urn:CMSD:unilokk:3",
+    "description": "CMSD-Demo Unilokk with job in progress",
+    "version": "1.0",
+    "metadata": {
+      "propertyDescription": [
+        {
+          "identifier": "CAPACITY",
+          "name": "CAPACITY",
+          "description": "Capacity of an InventoryItem; 0 means unlimited",
+          "parentEntityName": "INVENTORY_ITEM_CLASS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "NON_NEGATIVE_INTEGER"
+            }
+          ]
+        },
+        {
+          "identifier": "LOT_SIZE",
+          "name": "LOT_SIZE",
+          "description": "Lot size of a PartType",
+          "parentEntityName": "PART_TYPE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RESOURCE_STATUS",
+          "name": "RESOURCE_STATUS",
+          "description": "Status of a Resource, can be one of BUSY, IDLE, BROKEN, UNDER_MAINTENANCE, UNKNOWN, BLOCKED, SETUP, NO_WORKING_TIME, PAUSED, WAIT_FOR_WORKER",
+          "parentEntityName": "RESOURCE_CLASS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "STRING"
+            }
+          ]
+        },
+        {
+          "identifier": "MTTR",
+          "name": "MTTR",
+          "description": "Mean Time To Repair of a Resource",
+          "parentEntityName": "RESOURCE_CLASS",
+          "unitType": "TIME_UNIT",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            },
+            {
+              "propertyDataType": "STOCHASTIC"
+            }
+          ]
+        },
+        {
+          "identifier": "MTBF",
+          "name": "MTBF",
+          "description": "Mean Time Between Failure of a Resource",
+          "parentEntityName": "RESOURCE_CLASS",
+          "unitType": "TIME_UNIT",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            },
+            {
+              "propertyDataType": "STOCHASTIC"
+            }
+          ]
+        },
+        {
+          "identifier": "AVAILABILITY",
+          "name": "AVAILABILITY",
+          "description": "Availabilty of a Resource; 0 \u003e\u003d value \u003c\u003d 100 %",
+          "parentEntityName": "RESOURCE_CLASS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RELIABILITY",
+          "name": "RELIABILITY",
+          "description": "Reliability of a Resource; Waste rate; 0 \u003e\u003d value \u003c\u003d 100 %",
+          "parentEntityName": "RESOURCE_CLASS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "SUPER_PART_TYPE",
+          "name": "SUPER_PART_TYPE",
+          "description": "Super type of a PartType",
+          "parentEntityName": "PART_TYPE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "REFERENCE",
+              "referenceType": "PART_TYPE_REFERENCE"
+            }
+          ]
+        },
+        {
+          "identifier": "SUPER_BILL_OF_MATERIALS",
+          "name": "SUPER_BILL_OF_MATERIALS",
+          "description": "Super type of a BillOfMaterials",
+          "parentEntityName": "BILL_OF_MATERIALS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "REFERENCE",
+              "referenceType": "BILL_OF_MATERIALS_REFERENCE"
+            }
+          ]
+        },
+        {
+          "identifier": "SUPER_PROCESS_PLAN",
+          "name": "SUPER_PROCESS_PLAN",
+          "description": "Super type of a ProcessPlan",
+          "parentEntityName": "PROCESS_PLAN",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "REFERENCE",
+              "referenceType": "PROCESS_PLAN_REFERENCE"
+            }
+          ]
+        },
+        {
+          "identifier": "SUPER_RESOURCE_CLASS",
+          "name": "SUPER_RESOURCE_CLASS",
+          "description": "Super type of a ResourceClass",
+          "parentEntityName": "RESOURCE_CLASS",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "REFERENCE",
+              "referenceType": "RESOURCE_CLASS_REFERENCE"
+            }
+          ]
+        },
+        {
+          "identifier": "SUPER_RESOURCE",
+          "name": "SUPER_RESOURCE",
+          "description": "Super type of a Resource",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "REFERENCE",
+              "referenceType": "RESOURCE_REFERENCE"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_UNPLANNED",
+          "name": "RESULT_RESOURCE_UNPLANNED",
+          "description": "Result of a Resource: unplanned time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_WAITING",
+          "name": "RESULT_RESOURCE_WAITING",
+          "description": "Result of a Resource: waiting time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_BREAK",
+          "name": "RESULT_RESOURCE_BREAK",
+          "description": "Result of a Resource: break time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_SETUP",
+          "name": "RESULT_RESOURCE_SETUP",
+          "description": "Result of a Resource: setup time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_WORKING",
+          "name": "RESULT_RESOURCE_WORKING",
+          "description": "Result of a Resource: working time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_BLOCKED",
+          "name": "RESULT_RESOURCE_BLOCKED",
+          "description": "Result of a Resource: blocked time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_RESOURCE_FAILED",
+          "name": "RESULT_RESOURCE_FAILED",
+          "description": "Result of a Resource: failed time",
+          "parentEntityName": "RESOURCE",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_NOW",
+          "name": "RESULT_INVENTORY_ITEM_NOW",
+          "description": "Result of an InventoryItem: content now",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_MIN",
+          "name": "RESULT_INVENTORY_ITEM_MIN",
+          "description": "Result of an InventoryItem: minimal content",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_MAX",
+          "name": "RESULT_INVENTORY_ITEM_MAX",
+          "description": "Result of an InventoryItem: maximal content",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_MAX_WAIT",
+          "name": "RESULT_INVENTORY_ITEM_MAX_WAIT",
+          "description": "Result of an InventoryItem: maximal waiting",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_AVG",
+          "name": "RESULT_INVENTORY_ITEM_AVG",
+          "description": "Result of an InventoryItem: average content",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "DECIMAL"
+            }
+          ]
+        },
+        {
+          "identifier": "RESULT_INVENTORY_ITEM_AVG_WAIT",
+          "name": "RESULT_INVENTORY_ITEM_AVG_WAIT",
+          "description": "Result of an InventoryItem: average waiting",
+          "parentEntityName": "INVENTORY_ITEM",
+          "propertyCardinality": {
+            "maximum": "1"
+          },
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "SIMPLE",
+              "simpleValueDataType": "TIME_UNIT"
+            }
+          ]
+        },
+        {
+          "identifier": "dummyStochastic",
+          "name": "dummyStochastic",
+          "description": "dummyStochastic",
+          "parentEntityName": "PROCESS",
+          "propertyDataTypeDescription": [
+            {
+              "propertyDataType": "STOCHASTIC"
+            }
+          ]
+        }
+      ]
+    },
+    "unitDefaults": {
+      "areaUnit": "SQUARE_METER",
+      "lengthUnit": "MILLIMETER",
+      "currencyUnit": "EUR",
+      "powerUnit": "WATT",
+      "speedUnit": "METER_PER_SECOND",
+      "temperatureUnit": "CELSIUS",
+      "timeUnit": "SECOND",
+      "volumeUnit": "CUBIC_METER",
+      "weightUnit": "GRAM"
+    }
+  },
+  "dataSection": {
+    "distributionDefinition": [],
+    "referenceMaterial": [],
+    "calendar": [
+      {
+        "effectiveStartDate": "2019-01-01T00:00:00.000+01:00",
+        "effectiveEndDate": "2019-05-31T23:59:59.000+02:00",
+        "holiday": [
+          {
+            "date": "2018-11-01",
+            "identifier": "653d183f-03c9-4be6-b274-c98c17e53984",
+            "description": "Allerheiligen"
+          },
+          {
+            "date": "2018-10-03",
+            "identifier": "b652c687-53fb-4e5a-bd9b-a23b630fac7f",
+            "description": "Tag der Deutschen Einheit"
+          },
+          {
+            "date": "2018-03-30",
+            "identifier": "6340e226-fdfd-483d-90df-9f74160e0848",
+            "description": "Karfreitag"
+          },
+          {
+            "date": "2018-05-21",
+            "identifier": "5c3b6b8b-7af3-4949-88f9-903a49c09b63",
+            "description": "Pfingstmontag"
+          },
+          {
+            "date": "2018-05-10",
+            "identifier": "eb12b8ec-ce1d-49ce-b35a-630c34bfebda",
+            "description": "Christi Himmelfahrt"
+          },
+          {
+            "date": "2018-12-26",
+            "identifier": "91aaefd3-6945-427d-9d2d-739197f5f66b",
+            "description": "2. Weihnachtstag"
+          },
+          {
+            "date": "2018-12-25",
+            "identifier": "dffdddfd-c747-4e1d-8b11-490322b20ed2",
+            "description": "1. Weihnachtstag"
+          },
+          {
+            "date": "2018-01-01",
+            "identifier": "b0750d1d-c1ae-40c2-9481-9945531b4535",
+            "description": "Neujahrstag"
+          },
+          {
+            "date": "2018-04-02",
+            "identifier": "14a07ef2-5e93-4e7a-b6e3-fbbaebcaeb37",
+            "description": "Ostermontag"
+          },
+          {
+            "date": "2018-05-01",
+            "identifier": "539278af-abc1-49b1-9cec-2f0ab26a6afc",
+            "description": "Tag der Arbeit"
+          },
+          {
+            "date": "2018-05-31",
+            "identifier": "d997a515-6b68-4150-b1b7-96f86866889d",
+            "description": "Fronleichnam"
+          },
+          {
+            "date": "2019-11-01",
+            "identifier": "73045f16-a4d3-4ca3-81b3-b7d95c306302",
+            "description": "Allerheiligen"
+          },
+          {
+            "date": "2019-10-03",
+            "identifier": "465720df-cdac-45b4-bfed-68ce3e9c3da4",
+            "description": "Tag der Deutschen Einheit"
+          },
+          {
+            "date": "2019-04-19",
+            "identifier": "08958695-dc8a-4db9-8439-ff550026c909",
+            "description": "Karfreitag"
+          },
+          {
+            "date": "2019-06-10",
+            "identifier": "45bc9baf-5a62-4589-9d88-67a9f6a56a7f",
+            "description": "Pfingstmontag"
+          },
+          {
+            "date": "2019-05-30",
+            "identifier": "a3424fe9-65a4-47c5-864f-37ca98426476",
+            "description": "Christi Himmelfahrt"
+          },
+          {
+            "date": "2019-12-26",
+            "identifier": "011511ed-c3fe-4166-aa67-d05505ff9f3e",
+            "description": "2. Weihnachtstag"
+          },
+          {
+            "date": "2019-12-25",
+            "identifier": "9524b62d-ad03-4019-bca3-92ae82534141",
+            "description": "1. Weihnachtstag"
+          },
+          {
+            "date": "2019-01-01",
+            "identifier": "d4f07c1b-3735-48eb-a9f5-425b8b5c187e",
+            "description": "Neujahrstag"
+          },
+          {
+            "date": "2019-04-22",
+            "identifier": "062844f7-6017-4ee5-8963-1e7be5f33ec4",
+            "description": "Ostermontag"
+          },
+          {
+            "date": "2019-05-01",
+            "identifier": "05789fba-7d64-457f-8488-4524c7d9e37e",
+            "description": "Tag der Arbeit"
+          },
+          {
+            "date": "2019-06-20",
+            "identifier": "6e539f38-77e7-451b-b949-e8022b97fe74",
+            "description": "Fronleichnam"
+          },
+          {
+            "date": "2020-11-01",
+            "identifier": "1dc91ecb-1206-4d5f-8191-49f3264908cf",
+            "description": "Allerheiligen"
+          },
+          {
+            "date": "2020-10-03",
+            "identifier": "ab9c1cfa-7349-4b05-8ab5-0d90d9c11c84",
+            "description": "Tag der Deutschen Einheit"
+          },
+          {
+            "date": "2020-04-10",
+            "identifier": "70008db0-fe9a-4f29-bd40-c80ddf58f605",
+            "description": "Karfreitag"
+          },
+          {
+            "date": "2020-06-01",
+            "identifier": "8a1ee2cb-d4a9-4557-bac0-189294bfc0f3",
+            "description": "Pfingstmontag"
+          },
+          {
+            "date": "2020-05-21",
+            "identifier": "7f7f2b88-3d5c-48ff-a2bf-dde5ef8b21c5",
+            "description": "Christi Himmelfahrt"
+          },
+          {
+            "date": "2020-12-26",
+            "identifier": "38f8a08a-d609-4d99-9c84-36978f4cd8b8",
+            "description": "2. Weihnachtstag"
+          },
+          {
+            "date": "2020-12-25",
+            "identifier": "9e1dbd50-4abd-44de-9263-475fb2f63553",
+            "description": "1. Weihnachtstag"
+          },
+          {
+            "date": "2020-01-01",
+            "identifier": "1b2782b9-07aa-4f63-9043-d279efaed869",
+            "description": "Neujahrstag"
+          },
+          {
+            "date": "2020-04-13",
+            "identifier": "b21f4ba0-b061-460a-8aae-7b0b0dee0e83",
+            "description": "Ostermontag"
+          },
+          {
+            "date": "2020-05-01",
+            "identifier": "c9a7020b-4b59-4c4a-85c9-5b4864b71090",
+            "description": "Tag der Arbeit"
+          },
+          {
+            "date": "2020-06-11",
+            "identifier": "7aeed27a-44e0-4c92-99b2-9c3d08302753",
+            "description": "Fronleichnam"
+          }
+        ],
+        "shift": [
+          {
+            "startTime": "1970-01-01T07:00:00.000+01:00",
+            "duration": {
+              "unit": "HOUR",
+              "value": 13
+            },
+            "applicableDay": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY"
+            ],
+            "_break": [
+              {
+                "description": "1st-Break",
+                "startTime": "1970-01-01T09:00:00.000+01:00",
+                "duration": {
+                  "unit": "MINUTE",
+                  "value": 15
+                }
+              },
+              {
+                "description": "2nd-Break",
+                "startTime": "1970-01-01T12:00:00.000+01:00",
+                "duration": {
+                  "unit": "MINUTE",
+                  "value": 30
+                }
+              }
+            ],
+            "identifier": "Shift-one"
+          }
+        ],
+        "identifier": "DemoCalendar"
+      }
+    ],
+    "skillDefinition": [
+      {
+        "name": "SETUP",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "SETUP",
+        "description": "Skill to setup things"
+      },
+      {
+        "name": "REPAIR",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "REPAIR",
+        "description": "Skill to repair things"
+      },
+      {
+        "name": "MAINTAIN",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "MAINTAIN",
+        "description": "Skill to maintain things"
+      },
+      {
+        "name": "OPERATE",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "OPERATE",
+        "description": "Skill to operate things"
+      },
+      {
+        "name": "ASSEMBLE",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "ASSEMBLE",
+        "description": "Skill to assemble things"
+      },
+      {
+        "name": "CARRY",
+        "skillLevel": [
+          {
+            "name": "LOW",
+            "identifier": "LOW",
+            "description": "describes a skill with a low level"
+          },
+          {
+            "name": "NORMAL",
+            "identifier": "NORMAL",
+            "description": "describes a skill with a normal level"
+          },
+          {
+            "name": "EXPERT",
+            "identifier": "EXPERT",
+            "description": "describes a skill with an expert level"
+          }
+        ],
+        "identifier": "CARRY",
+        "description": "Skill to carry things"
+      }
+    ],
+    "resourceClass": [
+      {
+        "resourceType": "MACHINE",
+        "name": "MACHINE_BASE",
+        "identifier": "MACHINE_BASE",
+        "description": "Class defining a general machine",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTTR"
+            },
+            "name": "MTTR"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "name": "ASSEMBLY_BASE",
+        "identifier": "ASSEMBLY_BASE",
+        "description": "Class defining a general assembly station",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTTR"
+            },
+            "name": "MTTR"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY"
+          }
+        ]
+      },
+      {
+        "resourceType": "TOOL",
+        "name": "CONVEYOR",
+        "identifier": "CONVEYOR",
+        "description": "Class defining a general conveyor, should be defined in an InventoryItemClass and linked with an InventoryItem",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "CAPACITY"
+            },
+            "name": "CAPACITY"
+          }
+        ]
+      }
+    ],
+    "partType": [
+      {
+        "name": "Unilokk",
+        "billOfMaterials": {
+          "billOfMaterialsIdentifier": "BOM:Unilokk",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "processPlan": {
+          "processPlanIdentifier": "pp:unilokk",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "Unilokk",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "LOT_SIZE"
+            },
+            "name": "LOT_SIZE",
+            "unit": "Decimal",
+            "value": "10"
+          }
+        ]
+      },
+      {
+        "name": "Unilokk_Oberteil",
+        "processPlan": {
+          "processPlanIdentifier": "pp:oberteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "Unilokk_Oberteil"
+      },
+      {
+        "name": "Unilokk_Halteteil",
+        "processPlan": {
+          "processPlanIdentifier": "pp:halteteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "Unilokk_Halteteil"
+      },
+      {
+        "name": "Unilokk_Ring",
+        "processPlan": {
+          "processPlanIdentifier": "pp:ring",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "Unilokk_Ring"
+      },
+      {
+        "name": "Unilokk_Unterteil",
+        "processPlan": {
+          "processPlanIdentifier": "pp:unterteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "Unilokk_Unterteil"
+      },
+      {
+        "name": "Unilokk_Plaettchen",
+        "identifier": "Unilokk_Plaettchen"
+      },
+      {
+        "name": "O_Ringe_12x2,5mm",
+        "identifier": "O_Ringe_12x2,5mm"
+      },
+      {
+        "name": "O-Ringe_20x1,5mm",
+        "identifier": "Ringe_20x1,5mm"
+      },
+      {
+        "name": "Schraube_DIN_914_M3x4",
+        "identifier": "Schraube_DIN_914_M3x4"
+      },
+      {
+        "name": "Unilokk_Verpackung",
+        "identifier": "Unilokk_Verpackung"
+      }
+    ],
+    "inventoryItemClass": [],
+    "resource": [
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "currentSetup": [
+          {
+            "setupDefinitionIdentifier": "SD:FZ12:NULL",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "FZ12",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "FZ15",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "currentSetup": [
+          {
+            "setupDefinitionIdentifier": "SD:G200:NULL",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "G200",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "currentSetup": [
+          {
+            "setupDefinitionIdentifier": "SD:jaespa:NULL",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "jaespa",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "nardini",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "MACHINE",
+        "resourceClass": {
+          "resourceClassIdentifier": "MACHINE_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [
+          {
+            "calendarIdentifier": "DemoCalendar",
+            "shiftIdentifier": "Shift-one",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "deckel",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "MTBF"
+            },
+            "name": "MTBF",
+            "unit": "SECOND",
+            "value": "600"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "AVAILABILITY"
+            },
+            "name": "AVAILABILITY",
+            "unit": "DECIMAL",
+            "value": "0.9"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T1",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T2",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T3",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T4",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T5",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "STATION",
+        "resourceClass": {
+          "resourceClassIdentifier": "ASSEMBLY_BASE",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "currentStatus": "UNKNOWN",
+        "shiftAssignment": [],
+        "identifier": "ITEM_T6",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESOURCE_STATUS"
+            },
+            "name": "RESOURCE_STATUS",
+            "unit": "STRING",
+            "value": "IDLE"
+          }
+        ]
+      },
+      {
+        "resourceType": "EMPLOYEE",
+        "name": "Name1",
+        "currentStatus": "IDLE",
+        "shiftAssignment": [],
+        "employeeSkill": [
+          {
+            "skillDefinitionIdentifier": "ASSEMBLE",
+            "skillLevelIdentifier": "EXPERT"
+          },
+          {
+            "skillDefinitionIdentifier": "CARRY",
+            "skillLevelIdentifier": "EXPERT"
+          },
+          {
+            "skillDefinitionIdentifier": "SETUP",
+            "skillLevelIdentifier": "EXPERT"
+          },
+          {
+            "skillDefinitionIdentifier": "OPERATE",
+            "skillLevelIdentifier": "EXPERT"
+          }
+        ],
+        "identifier": "W1"
+      }
+    ],
+    "setupDefinition": [
+      {
+        "setupResource": {
+          "resourceIdentifier": "jaespa",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:jaespa:NULL"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:NULL"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "FZ12",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:FZ12:NULL"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "jaespa",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:jaespa:Unilokk_Oberteil"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "jaespa",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:jaespa:Unilokk_Unterteil"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "jaespa",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:jaespa:Unilokk_Halteteil"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "jaespa",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:jaespa:Unilokk_Ring"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Oberteil:1"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Oberteil:2"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Unterteil:1"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Unterteil:2"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Halteteil:1"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Halteteil:2"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "G200",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:G200:Unilokk_Ring"
+      },
+      {
+        "setupResource": {
+          "resourceIdentifier": "FZ12",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "identifier": "SD:FZ12:Unilokk_Oberteil"
+      }
+    ],
+    "setupChangeoverDefinition": [
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:jaespa:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 6
+            },
+            "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Oberteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:jaespa:NULL:TO:SD:jaespa:Unilokk_Oberteil"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:jaespa:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 6
+            },
+            "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Unterteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:jaespa:NULL:TO:SD:jaespa:Unilokk_Unterteil"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:jaespa:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 6
+            },
+            "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Halteteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:jaespa:NULL:TO:SD:jaespa:Unilokk_Halteteil"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:jaespa:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 6
+            },
+            "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Ring",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:jaespa:NULL:TO:SD:jaespa:Unilokk_Ring"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 65
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Oberteil:1",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Oberteil:1"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 20
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Oberteil:2",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Oberteil:2"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 45
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Unterteil:1",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Unterteil:1"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 20
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Unterteil:2",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Unterteil:2"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 40
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Halteteil:1",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Halteteil:1"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 30
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Halteteil:2",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Halteteil:2"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:G200:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 45
+            },
+            "setupDefinitionIdentifier": "SD:G200:Unilokk_Ring",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:G200:NULL:TO:SD:G200:Unilokk_Ring"
+      },
+      {
+        "currentSetup": {
+          "setupDefinitionIdentifier": "SD:FZ12:NULL",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "newSetup": [
+          {
+            "changeoverTime": {
+              "unit": "MINUTE",
+              "value": 45
+            },
+            "setupDefinitionIdentifier": "SD:FZ12:Unilokk_Oberteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        ],
+        "identifier": "SD:FZ12:NULL:TO:SD:FZ12:Unilokk_Oberteil"
+      }
+    ],
+    "billOfMaterials": [
+      {
+        "name": "Stückliste des Unilokks",
+        "partType": {
+          "partTypeIdentifier": "Unilokk",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "mainComponent": {
+          "billOfMaterialsIdentifier": "BOM:Unilokk",
+          "billOfMaterialsComponentIdentifier": "1",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "billOfMaterialsComponent": [
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Oberteil",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "1",
+            "description": "Unilokk_Oberteil"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Halteteil",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "2",
+            "description": "Unilokk_Halteteil"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Ring",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "3",
+            "description": "Unilokk_Ring"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Unterteil",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "4",
+            "description": "Unilokk_Unterteil"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Plaettchen",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "5",
+            "description": "Unilokk_Plaettchen"
+          },
+          {
+            "quantity": 2,
+            "partType": {
+              "partTypeIdentifier": "O_Ringe_12x2,5mm",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "6",
+            "description": "O_Ringe_12x2,5mm"
+          },
+          {
+            "quantity": 3,
+            "partType": {
+              "partTypeIdentifier": "Ringe_20x1,5mm",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "7",
+            "description": "O-Ringe_20x1,5mm"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Schraube_DIN_914_M3x4",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "8",
+            "description": "Schraube_DIN_914_M3x4"
+          },
+          {
+            "quantity": 1,
+            "partType": {
+              "partTypeIdentifier": "Unilokk_Verpackung",
+              "documentIdentifier": "urn:CMSD:unilokk"
+            },
+            "identifier": "9",
+            "description": "Unilokk_Verpackung"
+          }
+        ],
+        "identifier": "BOM:Unilokk",
+        "description": "Stückliste des Unilokks"
+      }
+    ],
+    "processPlan": [
+      {
+        "partsProduced": [
+          {}
+        ],
+        "process": [
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "jaespa",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Oberteil",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 13
+            },
+            "identifier": "1"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Oberteil:1",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 142
+            },
+            "identifier": "2"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Oberteil:2",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 50
+            },
+            "identifier": "3"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "FZ12",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:FZ12:Unilokk_Oberteil",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 400
+            },
+            "identifier": "4"
+          }
+        ],
+        "identifier": "pp:oberteil"
+      },
+      {
+        "partsProduced": [
+          {}
+        ],
+        "process": [
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "jaespa",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Unterteil",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 20
+            },
+            "identifier": "1"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Unterteil:1",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 197
+            },
+            "identifier": "2"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Unterteil:2",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 50
+            },
+            "identifier": "3"
+          }
+        ],
+        "identifier": "pp:unterteil"
+      },
+      {
+        "partsProduced": [
+          {}
+        ],
+        "process": [
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "jaespa",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Halteteil",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 4
+            },
+            "identifier": "1"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Halteteil:1",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 201
+            },
+            "identifier": "2"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Halteteil:2",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 54
+            },
+            "identifier": "3"
+          }
+        ],
+        "identifier": "pp:halteteil"
+      },
+      {
+        "partsProduced": [
+          {}
+        ],
+        "process": [
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "jaespa",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:jaespa:Unilokk_Ring",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 3
+            },
+            "identifier": "1"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Ring",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 185
+            },
+            "identifier": "2"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "G200",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "allowableSetup": [
+                  {
+                    "setupDefinitionIdentifier": "SD:G200:Unilokk_Ring",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "OPERATE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 20
+            },
+            "identifier": "3"
+          }
+        ],
+        "identifier": "pp:ring"
+      },
+      {
+        "partsProduced": [
+          {}
+        ],
+        "process": [
+          {
+            "partsConsumed": [
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Oberteil",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Plaettchen",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              }
+            ],
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "ITEM_T1",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "ASSEMBLE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 30
+            },
+            "identifier": "1"
+          },
+          {
+            "partsConsumed": [
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Halteteil",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Ring",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Unterteil",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "O_Ringe_12x2,5mm",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 2
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "Ringe_20x1,5mm",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 3
+              },
+              {
+                "partType": {
+                  "partTypeIdentifier": "Schraube_DIN_914_M3x4",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              }
+            ],
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "ITEM_T2",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "ASSEMBLE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 60
+            },
+            "identifier": "2"
+          },
+          {
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "ITEM_T3",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "ASSEMBLE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 10
+            },
+            "identifier": "3"
+          },
+          {
+            "partsConsumed": [
+              {
+                "partType": {
+                  "partTypeIdentifier": "Unilokk_Verpackung",
+                  "documentIdentifier": "urn:CMSD:unilokk"
+                },
+                "partQuantity": 1
+              }
+            ],
+            "resourcesRequired": [
+              {
+                "resource": [
+                  {
+                    "resourceIdentifier": "ITEM_T3",
+                    "documentIdentifier": "urn:CMSD:unilokk"
+                  }
+                ],
+                "requiredEmployeeSkill": [
+                  {
+                    "skillDefinitionIdentifier": "ASSEMBLE",
+                    "skillLevelIdentifier": "EXPERT"
+                  }
+                ]
+              }
+            ],
+            "operationTime": {
+              "unit": "SECOND",
+              "value": 20
+            },
+            "identifier": "4"
+          }
+        ],
+        "identifier": "pp:unilokk"
+      }
+    ],
+    "part": [
+      {
+        "partType": {
+          "partTypeIdentifier": "Unilokk_Oberteil",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "name": "Unilokk_Oberteil",
+        "productionStatus": "UNKNOWN",
+        "processPlan": {
+          "processPlanIdentifier": "pp:oberteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "lastFinishedProcessStep": {
+          "processPlanIdentifier": "pp:oberteil",
+          "processIdentifier": "1",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "identifier": "fdb948f8-4a60-4da5-8076-cbc2be608ddf"
+      },
+      {
+        "partType": {
+          "partTypeIdentifier": "Unilokk_Halteteil",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "name": "Unilokk_Halteteil",
+        "productionStatus": "UNKNOWN",
+        "processPlan": {
+          "processPlanIdentifier": "pp:halteteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "lastFinishedProcessStep": {
+          "processPlanIdentifier": "pp:halteteil",
+          "processIdentifier": "1",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "identifier": "9dfdbb8c-1eb4-4068-8b27-9043db5f950b"
+      },
+      {
+        "partType": {
+          "partTypeIdentifier": "Unilokk_Ring",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "name": "Unilokk_Ring",
+        "productionStatus": "UNKNOWN",
+        "processPlan": {
+          "processPlanIdentifier": "pp:ring",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "lastFinishedProcessStep": {
+          "processPlanIdentifier": "pp:ring",
+          "processIdentifier": "1",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "identifier": "988263fd-97eb-474d-8b8e-143112913831"
+      },
+      {
+        "partType": {
+          "partTypeIdentifier": "Unilokk_Unterteil",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "name": "Unilokk_Unterteil",
+        "productionStatus": "UNKNOWN",
+        "processPlan": {
+          "processPlanIdentifier": "pp:unterteil",
+          "documentIdentifier": "urn:CMSD:unilokk"
+        },
+        "lastFinishedProcessStep": {
+          "processPlanIdentifier": "pp:unterteil",
+          "processIdentifier": "1",
+          "documentIdentifier": "urn:CMSD:unilokk:3"
+        },
+        "identifier": "581f932f-1058-475b-bce1-e6727940d452"
+      }
+    ],
+    "inventoryItem": [],
+    "maintenancePlan": [],
+    "layoutObject": [],
+    "layout": [],
+    "order": [
+      {
+        "status": "CREATED",
+        "updateTime": "2019-05-06T12:27:15.456+02:00",
+        "dueDate": "2019-05-06T12:27:15.456+02:00",
+        "orderLine": [
+          {
+            "status": "CREATED",
+            "itemDescription": "Unilokk",
+            "itemQuantity": 1,
+            "partDescription": {
+              "partType": {
+                "partTypeIdentifier": "Unilokk",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              }
+            },
+            "identifier": "1"
+          }
+        ],
+        "identifier": "o1"
+      }
+    ],
+    "job": [
+      {
+        "status": "RELEASED",
+        "updateTime": "2019-05-06T12:27:15.487+02:00",
+        "associatedOrder": [
+          {
+            "orderIdentifier": "o1",
+            "orderLineIdentifier": "1",
+            "documentIdentifier": "urn:CMSD:unilokk:3"
+          }
+        ],
+        "precedenceConstraint": [
+          {
+            "predecessorJob": {
+              "jobIdentifier": "76147449-612e-41b7-8e99-b298c8fb2050_o1_1_Unilokk_Oberteil",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "successorJob": {
+              "jobIdentifier": "finishJob",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "precedenceRelationship": "SF"
+          },
+          {
+            "predecessorJob": {
+              "jobIdentifier": "ff158340-0ebc-43d3-82a7-27087707a142_o1_1_Unilokk_Halteteil",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "successorJob": {
+              "jobIdentifier": "finishJob",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "precedenceRelationship": "SF"
+          },
+          {
+            "predecessorJob": {
+              "jobIdentifier": "cf025be1-d3dc-4ea0-ad96-b5ee9d0e4487_o1_1_Unilokk_Ring",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "successorJob": {
+              "jobIdentifier": "finishJob",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "precedenceRelationship": "SF"
+          },
+          {
+            "predecessorJob": {
+              "jobIdentifier": "64ecf717-a69c-4df5-a7ec-5849d66e278a_o1_1_Unilokk_Unterteil",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "successorJob": {
+              "jobIdentifier": "finishJob",
+              "documentIdentifier": "urn:CMSD:unilokk:3"
+            },
+            "precedenceRelationship": "SF"
+          }
+        ],
+        "plannedEffort": {
+          "updateTime": "2019-05-06T12:27:15.487+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.487+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:unilokk",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "identifier": "a3078013-05ff-4789-86d3-3ab2f2cb9754_o1_1_Unilokk"
+      },
+      {
+        "status": "STARTED",
+        "updateTime": "2019-05-06T12:27:15.659+02:00",
+        "associatedOrder": [
+          {
+            "orderIdentifier": "o1",
+            "orderLineIdentifier": "1",
+            "documentIdentifier": "urn:CMSD:unilokk:3"
+          }
+        ],
+        "precedenceConstraint": [],
+        "plannedEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Oberteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "fdb948f8-4a60-4da5-8076-cbc2be608ddf",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:oberteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "actualEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Oberteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "fdb948f8-4a60-4da5-8076-cbc2be608ddf",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:oberteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "identifier": "76147449-612e-41b7-8e99-b298c8fb2050_o1_1_Unilokk_Oberteil"
+      },
+      {
+        "status": "UNKNOWN",
+        "identifier": "finishJob"
+      },
+      {
+        "status": "STARTED",
+        "updateTime": "2019-05-06T12:27:15.659+02:00",
+        "associatedOrder": [
+          {
+            "orderIdentifier": "o1",
+            "orderLineIdentifier": "1",
+            "documentIdentifier": "urn:CMSD:unilokk:3"
+          }
+        ],
+        "precedenceConstraint": [],
+        "plannedEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Halteteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "9dfdbb8c-1eb4-4068-8b27-9043db5f950b",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:halteteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "actualEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Halteteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "9dfdbb8c-1eb4-4068-8b27-9043db5f950b",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:halteteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "identifier": "ff158340-0ebc-43d3-82a7-27087707a142_o1_1_Unilokk_Halteteil"
+      },
+      {
+        "status": "STARTED",
+        "updateTime": "2019-05-06T12:27:15.659+02:00",
+        "associatedOrder": [
+          {
+            "orderIdentifier": "o1",
+            "orderLineIdentifier": "1",
+            "documentIdentifier": "urn:CMSD:unilokk:3"
+          }
+        ],
+        "precedenceConstraint": [],
+        "plannedEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Ring",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "988263fd-97eb-474d-8b8e-143112913831",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:ring",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "actualEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Ring",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "988263fd-97eb-474d-8b8e-143112913831",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:ring",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "identifier": "cf025be1-d3dc-4ea0-ad96-b5ee9d0e4487_o1_1_Unilokk_Ring"
+      },
+      {
+        "status": "STARTED",
+        "updateTime": "2019-05-06T12:27:15.659+02:00",
+        "associatedOrder": [
+          {
+            "orderIdentifier": "o1",
+            "orderLineIdentifier": "1",
+            "documentIdentifier": "urn:CMSD:unilokk:3"
+          }
+        ],
+        "precedenceConstraint": [],
+        "plannedEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Unterteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "581f932f-1058-475b-bce1-e6727940d452",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:unterteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "actualEffort": {
+          "updateTime": "2019-05-06T12:27:15.659+02:00",
+          "partsProduced": [
+            {
+              "partType": {
+                "partTypeIdentifier": "Unilokk_Unterteil",
+                "documentIdentifier": "urn:CMSD:unilokk:3"
+              },
+              "partQuantity": 1,
+              "partInstance": [
+                {
+                  "partIdentifier": "581f932f-1058-475b-bce1-e6727940d452",
+                  "documentIdentifier": "urn:CMSD:unilokk:3"
+                }
+              ]
+            }
+          ],
+          "startTime": "2019-05-06T12:27:15.659+02:00",
+          "processPlan": {
+            "processPlanIdentifier": "pp:unterteil",
+            "documentIdentifier": "urn:CMSD:unilokk"
+          }
+        },
+        "identifier": "64ecf717-a69c-4df5-a7ec-5849d66e278a_o1_1_Unilokk_Unterteil"
+      }
+    ],
+    "schedule": []
+  },
+  "experimentSection": {
+    "experiment": [
+      {
+        "startTime": "2019-04-01T00:00:00.000+02:00",
+        "simulationDuration": {
+          "unit": "MONTH",
+          "value": 10
+        },
+        "identifier": "TestEx"
+      }
+    ]
+  },
+  "resultSection": {
+    "entityStatisticClass": [
+      {
+        "parentEntityName": "RESOURCE",
+        "identifier": "MachineStatisticClass",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_UNPLANNED"
+            },
+            "name": "RESULT_RESOURCE_UNPLANNED"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_WAITING"
+            },
+            "name": "RESULT_RESOURCE_WAITING"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_BREAK"
+            },
+            "name": "RESULT_RESOURCE_BREAK"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_SETUP"
+            },
+            "name": "RESULT_RESOURCE_SETUP"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_WORKING"
+            },
+            "name": "RESULT_RESOURCE_WORKING"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_BLOCKED"
+            },
+            "name": "RESULT_RESOURCE_BLOCKED"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_RESOURCE_FAILED"
+            },
+            "name": "RESULT_RESOURCE_FAILED"
+          }
+        ]
+      },
+      {
+        "parentEntityName": "INVENTORY_ITEM",
+        "identifier": "InventoryStatisticClass",
+        "property": [
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_NOW"
+            },
+            "name": "RESULT_INVENTORY_ITEM_NOW"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_MIN"
+            },
+            "name": "RESULT_INVENTORY_ITEM_MIN"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_MAX"
+            },
+            "name": "RESULT_INVENTORY_ITEM_MAX"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_MAX_WAIT"
+            },
+            "name": "RESULT_INVENTORY_ITEM_MAX_WAIT"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_AVG"
+            },
+            "name": "RESULT_INVENTORY_ITEM_AVG"
+          },
+          {
+            "propertyDescription": {
+              "propertyDescriptionIdentifier": "RESULT_INVENTORY_ITEM_AVG_WAIT"
+            },
+            "name": "RESULT_INVENTORY_ITEM_AVG_WAIT"
+          }
+        ]
+      }
+    ]
+  },
+  "cmsdVersion": "08012019"
+}

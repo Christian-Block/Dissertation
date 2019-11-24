@@ -1,0 +1,1946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xsd:element name="CMSDDocument">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="HeaderSection" type="HeaderSection" minOccurs="0" />
+				<xsd:element name="DataSection" type="DataSection" minOccurs="0" />
+				<!-- Extension -->
+				<xsd:element name="ExperimentSection" type="ExperimentSection" minOccurs="0" />
+				<!-- Extension -->
+				<xsd:element name="ResultSection" type="ResultSection" minOccurs="0" />
+			</xsd:sequence>
+			<!-- Extension -->
+			<xsd:attribute name="CMSDVersion" type="String" fixed="08012019" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="LengthUnit" type="LengthUnit" />
+	<xsd:element name="PixelLengthUnit">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="pixel" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ColorName">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="aqua" />
+				<xsd:enumeration value="black" />
+				<xsd:enumeration value="blue" />
+				<xsd:enumeration value="fuchsia" />
+				<xsd:enumeration value="gray" />
+				<xsd:enumeration value="green" />
+				<xsd:enumeration value="lime" />
+				<xsd:enumeration value="maroon" />
+				<xsd:enumeration value="navy" />
+				<xsd:enumeration value="olive" />
+				<xsd:enumeration value="purple" />
+				<xsd:enumeration value="red" />
+				<xsd:enumeration value="sliver" />
+				<xsd:enumeration value="teal" />
+				<xsd:enumeration value="white" />
+				<xsd:enumeration value="yellow" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ColorHexString" type="ColorHexString" />
+	<xsd:simpleType name="Identifier">
+		<xsd:restriction base="xsd:string" />
+	</xsd:simpleType>
+	<xsd:simpleType name="String">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Date">
+		<xsd:restriction base="xsd:date">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Time">
+		<xsd:restriction base="xsd:time">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Timestamp">
+		<xsd:restriction base="xsd:dateTime">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="URI">
+		<xsd:restriction base="xsd:anyURI">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Decimal">
+		<xsd:restriction base="xsd:decimal">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Integer">
+		<xsd:restriction base="xsd:int">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NonNegativeInteger">
+		<xsd:restriction base="xsd:nonNegativeInteger">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Boolean">
+		<xsd:restriction base="xsd:boolean">
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UnlimitedCardinality">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="*" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NonNegativeIntegerCardinality">
+		<xsd:restriction base="xsd:nonNegativeInteger" />
+	</xsd:simpleType>
+	<xsd:simpleType name="CardinalitySpecification">
+		<xsd:union memberTypes="UnlimitedCardinality NonNegativeIntegerCardinality" />
+	</xsd:simpleType>
+	<xsd:simpleType name="AreaUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="squareInch" />
+			<xsd:enumeration value="squareFoot" />
+			<xsd:enumeration value="squareYard" />
+			<xsd:enumeration value="squareCentimeter" />
+			<xsd:enumeration value="squareMeter" />
+			<xsd:enumeration value="squareKilometer" />
+			<xsd:enumeration value="squareMile" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LengthUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="millimeter" />
+			<xsd:enumeration value="centimeter" />
+			<xsd:enumeration value="meter" />
+			<xsd:enumeration value="kilometer" />
+			<xsd:enumeration value="inch" />
+			<xsd:enumeration value="foot" />
+			<xsd:enumeration value="yard" />
+			<xsd:enumeration value="mile" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SpeedUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="footPerSecond" />
+			<xsd:enumeration value="kilometerPerHour" />
+			<xsd:enumeration value="meterPerSecond" />
+			<xsd:enumeration value="milePerHour" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PowerUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="horsepower" />
+			<xsd:enumeration value="watt" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TemperatureUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Celsius" />
+			<xsd:enumeration value="Fahrenheit" />
+			<xsd:enumeration value="kelvin" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TimeUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="second" />
+			<xsd:enumeration value="minute" />
+			<xsd:enumeration value="hour" />
+			<xsd:enumeration value="day" />
+			<xsd:enumeration value="month" />
+			<xsd:enumeration value="week" />
+			<xsd:enumeration value="year" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WeightUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ounce" />
+			<xsd:enumeration value="pound" />
+			<xsd:enumeration value="milligram" />
+			<xsd:enumeration value="ton" />
+			<xsd:enumeration value="centigram" />
+			<xsd:enumeration value="gram" />
+			<xsd:enumeration value="kilogram" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VolumeUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="cubicCentimeter" />
+			<xsd:enumeration value="cubicInch" />
+			<xsd:enumeration value="cubicFoot" />
+			<xsd:enumeration value="cubicMeter" />
+			<xsd:enumeration value="cubicYard" />
+			<xsd:enumeration value="milliliter" />
+			<xsd:enumeration value="gallon" />
+			<xsd:enumeration value="liter" />
+			<xsd:enumeration value="pint" />
+			<xsd:enumeration value="quart" />
+			<xsd:enumeration value="ounce" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CurrencyUnit">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-Z]{3}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PropertyExtensibleEntity">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Layout" />
+			<xsd:enumeration value="LayoutElement" />
+			<xsd:enumeration value="GraphicDescription" />
+			<xsd:enumeration value="BillOfMaterials" />
+			<xsd:enumeration value="LimitedUniqueEntity" />
+			<xsd:enumeration value="IdentifiableEntity" />
+			<xsd:enumeration value="UniqueEntity" />
+			<xsd:enumeration value="ColorHighlight" />
+			<xsd:enumeration value="ShapeLabelDefiniton" />
+			<xsd:enumeration value="Event" />
+			<xsd:enumeration value="ReferenceMaterial" />
+			<xsd:enumeration value="CostAllocationData" />
+			<xsd:enumeration value="DistributionDefinition" />
+			<xsd:enumeration value="SetupChangeoverDefinition" />
+			<xsd:enumeration value="SetupDefinition" />
+			<xsd:enumeration value="SkillDefinition" />
+			<xsd:enumeration value="SkillLevel" />
+			<xsd:enumeration value="Connection" />
+			<xsd:enumeration value="ResourceClass" />
+			<xsd:enumeration value="MaintenancePlan" />
+			<xsd:enumeration value="Resource" />
+			<xsd:enumeration value="MaintenanceProcess" />
+			<xsd:enumeration value="Process" />
+			<xsd:enumeration value="Holiday" />
+			<xsd:enumeration value="ProcessPlan" />
+			<xsd:enumeration value="Shift" />
+			<xsd:enumeration value="ShiftSchedule" />
+			<xsd:enumeration value="Calendar" />
+			<xsd:enumeration value="ScheduleItemEffortDescripton" />
+			<xsd:enumeration value="Schedule" />
+			<xsd:enumeration value="ScheduleItem" />
+			<xsd:enumeration value="Job" />
+			<xsd:enumeration value="JobEffortDescription" />
+			<xsd:enumeration value="Order" />
+			<xsd:enumeration value="OrderLine" />
+			<xsd:enumeration value="InventoryItem" />
+			<xsd:enumeration value="InventoryItemClass" />
+			<xsd:enumeration value="CurvedSegment" />
+			<xsd:enumeration value="PartType" />
+			<xsd:enumeration value="ImageGraphic" />
+			<xsd:enumeration value="Part" />
+			<xsd:enumeration value="SegmentShape" />
+			<xsd:enumeration value="StraightSegment" />
+			<xsd:enumeration value="ModelGraphic" />
+			<xsd:enumeration value="TextualAnnotation" />
+			<xsd:enumeration value="LayoutObject" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReferenceTypeName">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="BillOfMaterialsReference" />
+			<xsd:enumeration value="BillOfMaterialsComponentReference" />
+			<xsd:enumeration value="CalendarReference" />
+			<xsd:enumeration value="DistributionDefinitionReference" />
+			<xsd:enumeration value="InventoryItemClassReference" />
+			<xsd:enumeration value="InventoryItemReference" />
+			<xsd:enumeration value="JobReference" />
+			<xsd:enumeration value="LayoutElementReference" />
+			<xsd:enumeration value="MaintenancePlanReference" />
+			<xsd:enumeration value="MaintenanceProcessReference" />
+			<xsd:enumeration value="OrderInformationReference" />
+			<xsd:enumeration value="PartReference" />
+			<xsd:enumeration value="PartTypeReference" />
+			<xsd:enumeration value="ProcessPlanReference" />
+			<xsd:enumeration value="ProcessReference" />
+			<xsd:enumeration value="ReferenceMaterialReference" />
+			<xsd:enumeration value="ResourceClassReference" />
+			<xsd:enumeration value="ResourceReference" />
+			<xsd:enumeration value="ScheduleInformationReference" />
+			<xsd:enumeration value="SetupChangeoverReference" />
+			<xsd:enumeration value="SetupDefinitionReference" />
+			<xsd:enumeration value="SkillReference" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UnitTypeName">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="AreaUnit" />
+			<xsd:enumeration value="CurrencyUnit" />
+			<xsd:enumeration value="LengthUnit" />
+			<xsd:enumeration value="PowerUnit" />
+			<xsd:enumeration value="SpeedUnit" />
+			<xsd:enumeration value="TemperatureUnit" />
+			<xsd:enumeration value="WeightUnit" />
+			<xsd:enumeration value="TimeUnit" />
+			<xsd:enumeration value="VolumeUnit" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SimpleDataTypeName">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Time" />
+			<xsd:enumeration value="Date" />
+			<xsd:enumeration value="Timestamp" />
+			<xsd:enumeration value="String" />
+			<xsd:enumeration value="Identifier" />
+			<xsd:enumeration value="URI" />
+			<xsd:enumeration value="Decimal" />
+			<xsd:enumeration value="Boolean" />
+			<xsd:enumeration value="Integer" />
+			<xsd:enumeration value="NonNegativeInteger" />
+			<xsd:enumeration value="AreaUnit" />
+			<xsd:enumeration value="CurrencyUnit" />
+			<xsd:enumeration value="LengthUnit" />
+			<xsd:enumeration value="PowerUnit" />
+			<xsd:enumeration value="SpeedUnit" />
+			<xsd:enumeration value="TemperatureUnit" />
+			<xsd:enumeration value="WeightUnit" />
+			<xsd:enumeration value="TimeUnit" />
+			<xsd:enumeration value="VolumeUnit" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PropertyType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="simple" />
+			<xsd:enumeration value="reference" />
+			<xsd:enumeration value="stochastic" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TextAnchorLocation">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="center" />
+			<xsd:enumeration value="upperLeft" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BasicShapeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="box" />
+			<xsd:enumeration value="circle" />
+			<xsd:enumeration value="polygon" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CoordinateSystem">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="centerBased" />
+			<xsd:enumeration value="upperLeftBased" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BaseLocation">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="floor" />
+			<xsd:enumeration value="ceiling" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ShapeDescriptionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="basic" />
+			<xsd:enumeration value="graphic" />
+			<xsd:enumeration value="segment" />
+			<xsd:enumeration value="text" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GraphicDescriptionType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="modelGraphic" />
+			<xsd:enumeration value="imageGraphic" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ColorHexString">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="#[a-fA-F0-9]{6}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SegmentType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="straight" />
+			<xsd:enumeration value="curved" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ResourceType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="carrier" />
+			<xsd:enumeration value="conveyor" />
+			<xsd:enumeration value="crane" />
+			<xsd:enumeration value="employee" />
+			<xsd:enumeration value="fixture" />
+			<xsd:enumeration value="machine" />
+			<xsd:enumeration value="path" />
+			<xsd:enumeration value="powerAndFree" />
+			<xsd:enumeration value="station" />
+			<xsd:enumeration value="tool" />
+			<xsd:enumeration value="transporter" />
+			<xsd:enumeration value="other" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrderStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="created" />
+			<xsd:enumeration value="released" />
+			<xsd:enumeration value="completed" />
+			<xsd:enumeration value="shipped" />
+			<xsd:enumeration value="cancelled" />
+			<xsd:enumeration value="unknown" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CostCategory">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="indirect" />
+			<xsd:enumeration value="labor" />
+			<xsd:enumeration value="material" />
+			<xsd:enumeration value="equipment" />
+			<xsd:enumeration value="other" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CostType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="fixed" />
+			<xsd:enumeration value="variable" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PartProductionStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="unknown" />
+			<xsd:enumeration value="workInProcess" />
+			<xsd:enumeration value="finishedGood" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="JobStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="released" />
+			<xsd:enumeration value="started" />
+			<xsd:enumeration value="unknown" />
+			<xsd:enumeration value="completed" />
+			<xsd:enumeration value="cancelled" />
+			<xsd:enumeration value="blocked" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PrecedenceRelationship">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SS" />
+			<xsd:enumeration value="SF" />
+			<xsd:enumeration value="FS" />
+			<xsd:enumeration value="FF" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ResourceStatus">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="busy" />
+			<xsd:enumeration value="idle" />
+			<xsd:enumeration value="broken" />
+			<xsd:enumeration value="underMaintenance" />
+			<xsd:enumeration value="unknown" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Day">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="sunday" />
+			<xsd:enumeration value="monday" />
+			<xsd:enumeration value="tuesday" />
+			<xsd:enumeration value="wednesday" />
+			<xsd:enumeration value="thursday" />
+			<xsd:enumeration value="friday" />
+			<xsd:enumeration value="saturday" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="InventoryItemType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="part" />
+			<xsd:enumeration value="resource" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProcessGroupType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="sequence" />
+			<xsd:enumeration value="concurrent" />
+			<xsd:enumeration value="decision" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="HeaderSection">
+		<xsd:sequence>
+			<xsd:element name="DocumentIdentifier" type="Identifier" minOccurs="0" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Version" type="String" minOccurs="0" />
+			<xsd:element name="CreationTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="Metadata" type="Metadata" minOccurs="0" />
+			<xsd:element name="CMSDDocumentReference" type="CMSDDocumentReference" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="UnitDefaults" type="UnitDefaults" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DataSection">
+		<xsd:sequence>
+			<xsd:element name="DistributionDefinition" type="DistributionDefinition" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="ReferenceMaterial" type="ReferenceMaterial" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Calendar" type="Calendar" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="SkillDefinition" type="SkillDefinition" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="ResourceClass" type="ResourceClass" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="PartType" type="PartType" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="InventoryItemClass" type="InventoryItemClass" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Resource" type="Resource" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="SetupDefinition" type="SetupDefinition" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="SetupChangeoverDefinition" type="SetupChangeoverDefinition" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="BillOfMaterials" type="BillOfMaterials" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="ProcessPlan" type="ProcessPlan" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Part" type="Part" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="InventoryItem" type="InventoryItem" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="MaintenancePlan" type="MaintenancePlan" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="LayoutObject" type="LayoutObject" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Layout" type="Layout" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Order" type="Order" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Job" type="Job" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Schedule" type="Schedule" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Metadata">
+		<xsd:sequence>
+			<xsd:element name="PropertyDescription" type="PropertyDescription" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CMSDDocumentReference">
+		<xsd:sequence>
+			<xsd:element name="LocalDocumentIdentifier" type="Identifier" />
+			<xsd:element name="DocumentLocation" type="URI" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="UnitDefaults">
+		<xsd:sequence>
+			<xsd:element name="AreaUnit" type="AreaUnit" default="squareFoot" minOccurs="0" />
+			<xsd:element name="LengthUnit" type="LengthUnit" default="foot" minOccurs="0" />
+			<xsd:element name="CurrencyUnit" type="CurrencyUnit" default="USD" minOccurs="0" />
+			<xsd:element name="PowerUnit" type="PowerUnit" default="horsepower" minOccurs="0" />
+			<xsd:element name="SpeedUnit" type="SpeedUnit" default="footPerSecond" minOccurs="0" />
+			<xsd:element name="TemperatureUnit" type="TemperatureUnit" default="Fahrenheit" minOccurs="0" />
+			<xsd:element name="TimeUnit" type="TimeUnit" default="minute" minOccurs="0" />
+			<xsd:element name="VolumeUnit" type="VolumeUnit" default="cubicFoot" minOccurs="0" />
+			<xsd:element name="WeightUnit" type="WeightUnit" default="pound" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Entity" />
+	<xsd:complexType name="IdentifiableEntity">
+		<xsd:complexContent>
+			<xsd:extension base="Entity">
+				<xsd:sequence>
+					<xsd:element name="Identifier" type="Identifier" />
+					<xsd:element name="Description" type="String" minOccurs="0" />
+					<xsd:element name="ReferenceMaterial" type="ReferenceMaterialReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="UniqueEntity">
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiableEntity" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LimitedUniqueEntity">
+		<xsd:complexContent>
+			<xsd:extension base="IdentifiableEntity" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ReferencingEntity">
+		<xsd:complexContent>
+			<xsd:extension base="Entity" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LayoutLengthUnit">
+		<xsd:choice>
+			<xsd:element ref="LengthUnit" />
+			<xsd:element ref="PixelLengthUnit" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="ColorDefinition">
+		<xsd:choice>
+			<xsd:element ref="ColorName" />
+			<xsd:element ref="ColorHexString" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="AreaType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="AreaUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CurrencyType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="CurrencyUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ElapsedTimeType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="TimeUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LengthType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="LengthUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PowerType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="PowerUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpeedType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="SpeedUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TemperatureType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="TemperatureUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VolumeType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="VolumeUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WeightType">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="WeightUnit" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="QuantityType">
+		<xsd:sequence>
+			<xsd:element name="UnitDescription" type="String" minOccurs="0" />
+			<xsd:element name="UnitName" type="String" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GrossDimensions">
+		<xsd:choice>
+			<xsd:element name="Unit" type="LengthUnit" minOccurs="0" />
+			<xsd:element name="Width" type="Decimal" minOccurs="0" />
+			<xsd:element name="Depth" type="Decimal" minOccurs="0" />
+			<xsd:element name="Height" type="Decimal" minOccurs="0" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="Property">
+		<xsd:sequence>
+			<xsd:element name="PropertyDescription" type="PropertyDescriptionReference" minOccurs="0" />
+			<xsd:element name="Name" type="String" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Unit" type="String" minOccurs="0" />
+			<xsd:choice minOccurs="0">
+				<xsd:element name="Value" type="String" />
+				<xsd:element name="Distribution" type="Distribution" />
+				<xsd:element name="ReferenceProperty" type="AbstractEntityReference" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DistributionDefinition">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Distribution" type="Distribution" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Duration">
+		<xsd:sequence>
+			<xsd:element name="Unit" type="TimeUnit" minOccurs="0" />
+			<xsd:choice>
+				<xsd:element name="Value" type="Decimal" />
+				<xsd:element name="Distribution" type="Distribution" />
+				<xsd:element name="DistributionReference" type="DistributionDefinitionReference" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Distribution">
+		<xsd:sequence>
+			<xsd:element name="Name" type="String" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="DistributionParameter" type="DistributionParameter" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DistributionParameter">
+		<xsd:sequence>
+			<xsd:element name="Name" type="String" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Value" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContactInformation">
+		<xsd:sequence>
+			<xsd:element name="ContactParty" type="ContactParty" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="CommunicationMethod" type="CommunicationMethod" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ContactParty">
+		<xsd:sequence>
+			<xsd:element name="PersonName" type="String" minOccurs="0" />
+			<xsd:element name="OrganizationName" type="String" minOccurs="0" />
+			<xsd:element name="CommunicationMethod" type="CommunicationMethod" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CommunicationMethod">
+		<xsd:sequence>
+			<xsd:element name="Description" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Phone">
+		<xsd:complexContent>
+			<xsd:extension base="CommunicationMethod">
+				<xsd:sequence>
+					<xsd:element name="Number" type="String" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Email">
+		<xsd:complexContent>
+			<xsd:extension base="CommunicationMethod">
+				<xsd:sequence>
+					<xsd:element name="Address" type="URI" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Address">
+		<xsd:complexContent>
+			<xsd:extension base="CommunicationMethod">
+				<xsd:sequence>
+					<xsd:element name="OrganizationName" type="String" minOccurs="0" />
+					<xsd:choice>
+						<xsd:element name="Street" type="String" />
+						<xsd:element name="PostOfficeBox" type="String" />
+					</xsd:choice>
+					<xsd:element name="AdditionalInformation" type="String" minOccurs="0" />
+					<xsd:element name="City" type="String" />
+					<xsd:element name="State" type="String" />
+					<xsd:element name="Country" type="String" minOccurs="0" />
+					<xsd:element name="PostalCode" type="String" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PrecedenceConstraint">
+		<xsd:sequence>
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="PrecedenceRelationship" type="PrecedenceRelationship" />
+			<xsd:element name="LagDuration" type="ElapsedTimeType" minOccurs="0" />
+			<xsd:element name="LagPercentage" type="Decimal" minOccurs="0" />
+			<xsd:element name="LagPartsComplete" type="NonNegativeInteger" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessConstraint">
+		<xsd:complexContent>
+			<xsd:extension base="PrecedenceConstraint">
+				<xsd:sequence>
+					<xsd:element name="PredecessorProcess" type="ProcessReference" />
+					<xsd:element name="SuccessorProcess" type="ProcessReference" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="JobConstraint">
+		<xsd:complexContent>
+			<xsd:extension base="PrecedenceConstraint">
+				<xsd:sequence>
+					<xsd:element name="PredecessorJob" type="JobReference" />
+					<xsd:element name="SuccessorJob" type="JobReference" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenanceProcessConstraint">
+		<xsd:complexContent>
+			<xsd:extension base="PrecedenceConstraint">
+				<xsd:sequence>
+					<xsd:element name="PredecessorProcess" type="MaintenanceProcessReference" />
+					<xsd:element name="SuccessorProcess" type="MaintenanceProcessReference" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ItemPackaging">
+		<xsd:sequence>
+			<xsd:element name="PackageName" type="String" />
+			<xsd:element name="PackageDescription" type="String" minOccurs="0" />
+			<xsd:choice minOccurs="0">
+				<xsd:element name="PerMeasuredAmountPackaging" type="PerMeasuredAmountPackaging" />
+				<xsd:element name="PerPiecePackaging" type="PerPiecePackaging" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PerPiecePackaging">
+		<xsd:sequence>
+			<xsd:element name="PiecesPerPackage" type="NonNegativeInteger" />
+			<xsd:element name="PricePerPiece" type="CurrencyType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PerMeasuredAmountPackaging">
+		<xsd:sequence>
+			<xsd:element name="MeasuredAmount" type="Decimal" />
+			<xsd:element name="PackageUnitOfMeasure" type="String" minOccurs="0" />
+			<xsd:element name="PricePerUnit" type="CurrencyType" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CostAllocationData">
+		<xsd:sequence>
+			<xsd:element name="CostCategory" type="CostCategory" minOccurs="0" />
+			<xsd:element name="CostType" type="CostType" />
+			<xsd:element name="CostName" type="String" minOccurs="0" />
+			<xsd:element name="CostDescription" type="String" minOccurs="0" />
+			<xsd:element name="TotalCost" type="CurrencyType" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="VariableCostData" type="VariableCostData" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VariableCostData">
+		<xsd:sequence>
+			<xsd:element name="CostUnit" type="String" />
+			<xsd:element name="CostRatePerUnit" type="Decimal" />
+			<xsd:element name="CostUnitQuantity" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MachineProgramData">
+		<xsd:sequence>
+			<xsd:element name="MachineProgramName" type="String" minOccurs="0" />
+			<xsd:element name="TargetMachine" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="MachineProgramLocation" type="URI" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Event">
+		<xsd:sequence>
+			<xsd:element name="SequenceNumber" type="String" minOccurs="0" />
+			<xsd:element name="Name" type="String" minOccurs="0" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Timestamp" type="Timestamp" minOccurs="0" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpatialDimension">
+		<xsd:sequence>
+			<xsd:element name="Width" type="Decimal" />
+			<xsd:element name="Depth" type="Decimal" />
+			<xsd:element name="Height" type="Decimal" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BoundaryDefinition">
+		<xsd:complexContent>
+			<xsd:extension base="SpatialDimension">
+				<xsd:sequence>
+					<xsd:element name="Unit" type="LayoutLengthUnit" minOccurs="0" />
+					<xsd:element name="CoordinateSystem" type="CoordinateSystem" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Coordinate2D">
+		<xsd:sequence>
+			<xsd:element name="X" type="Decimal" />
+			<xsd:element name="Y" type="Decimal" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Coordinate3D">
+		<xsd:complexContent>
+			<xsd:extension base="Coordinate2D">
+				<xsd:sequence>
+					<xsd:element name="Z" type="Decimal" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ColorHighlight">
+		<xsd:sequence>
+			<xsd:element name="LineColor" type="ColorDefinition" minOccurs="0" />
+			<xsd:element name="FillColor" type="ColorDefinition" minOccurs="0" />
+			<xsd:element name="AlphaValue" type="NonNegativeInteger" minOccurs="0" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ShapeLabelDefinition">
+		<xsd:sequence>
+			<xsd:element name="Text" type="String" />
+			<xsd:element name="Color" type="ColorDefinition" minOccurs="0" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ImageResolution">
+		<xsd:sequence>
+			<xsd:element name="PixelsPerUnit" type="NonNegativeInteger" />
+			<xsd:element name="ScreenUnit" type="LayoutLengthUnit" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReferenceMaterial">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="FileName" type="String" minOccurs="0" />
+					<xsd:element name="OnlineLocation" type="URI" minOccurs="0" />
+					<xsd:element name="ISBN" type="String" minOccurs="0" />
+					<xsd:element name="DigitalFormat" type="String" minOccurs="0" />
+					<xsd:element name="PermanentStorageMedium" type="String" minOccurs="0" />
+					<xsd:element name="PhysicalLocation" type="String" minOccurs="0" />
+					<xsd:element name="RequiredApplication" type="RequiredApplication" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RequiredApplication">
+		<xsd:sequence>
+			<xsd:element name="Name" type="String" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Version" type="String" minOccurs="0" />
+			<xsd:element name="OperatingSystem" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PartGroup">
+		<xsd:sequence>
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="PartType" type="PartTypeReference" minOccurs="0" />
+			<xsd:element name="PartQuantity" type="NonNegativeInteger" minOccurs="0" />
+			<xsd:element name="PartInstance" type="PartReference" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LotInformation">
+		<xsd:sequence>
+			<xsd:element name="LotNumber" type="String" />
+			<xsd:element name="ParentLotNumber" type="String" minOccurs="0" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LocationDefinition">
+		<xsd:sequence>
+			<xsd:element name="FacilityLocation" type="String" minOccurs="0" />
+			<xsd:element name="WithinFacilityLocation" type="String" minOccurs="0" />
+			<xsd:element name="ResourceLocation" type="ResourceReference" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResourcesRequired">
+		<xsd:sequence>
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="ResourceClass" type="ResourceClassReference" minOccurs="0" />
+			<xsd:element name="MinimumNumber" type="NonNegativeInteger" minOccurs="0" />
+			<xsd:element name="MaximumNumber" type="NonNegativeInteger" minOccurs="0" />
+			<xsd:element name="Resource" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="AllowableSetup" type="SetupDefinitionReference" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="RequiredEmployeeSkill" type="SkillReference" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AbstractEntityReference">
+		<xsd:complexContent>
+			<xsd:extension base="ReferencingEntity">
+				<xsd:sequence>
+					<xsd:element name="DocumentIdentifier" type="String" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BillOfMaterialsReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="BillOfMaterialsIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="DistributionDefinitionReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="DistributionDefinitionIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="InventoryItemReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="InventoryItemIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="InventoryItemClassReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="InventoryItemClassIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="JobReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="JobIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LayoutElementReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="LayoutElementIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenancePlanReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="MaintenancePlanIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PartReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="PartIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PartTypeReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="PartTypeIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessPlanReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ProcessPlanIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PropertyDescriptionReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="PropertyDescriptionIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ReferenceMaterialReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ReferenceMaterialIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceClassReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ResourceClassIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ResourceIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SetupChangeoverReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="SetupChangeoverIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SetupDefinitionReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="SetupDefinitionIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CalendarReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="CalendarIdentifier" type="Identifier" />
+					<xsd:choice>
+						<xsd:element name="ShiftScheduleIdentifier" type="Identifier" />
+						<xsd:element name="ShiftIdentifier" type="Identifier" />
+						<xsd:element name="HolidayIdentifier" type="Identifier" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrderInformationReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="OrderIdentifier" type="Identifier" />
+					<xsd:element name="OrderLineIdentifier" type="Identifier" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SkillReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="SkillDefinitionIdentifier" type="Identifier" />
+					<xsd:element name="SkillLevelIdentifier" type="Identifier" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ScheduleInformationReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ScheduleIdentifier" type="Identifier" />
+					<xsd:element name="ScheduleItemIdentifier" type="Identifier" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ProcessPlanIdentifier" type="Identifier" />
+					<xsd:element name="ProcessIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenanceProcessReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="MaintenancePlanIdentifier" type="Identifier" />
+					<xsd:element name="MaintenanceProcessIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BillOfMaterialsComponentReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="BillOfMaterialsIdentifier" type="Identifier" />
+					<xsd:element name="BillOfMaterialsComponentIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PropertyDescription">
+		<xsd:sequence>
+			<xsd:element name="Identifier" type="Identifier" minOccurs="0" />
+			<xsd:element name="Name" type="String" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="ParentEntityName" type="PropertyExtensibleEntity" />
+			<xsd:element name="UnitType" type="UnitTypeName" minOccurs="0" />
+			<xsd:element name="PropertyCardinality" type="PropertyCardinality" minOccurs="0" />
+			<xsd:element name="PropertyDataTypeDescription" type="PropertyDataTypeDescription" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PropertyCardinality">
+		<xsd:choice>
+			<xsd:element name="Minimum" type="NonNegativeInteger" />
+			<xsd:element name="Maximum" type="CardinalitySpecification" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="PropertyDataTypeDescription">
+		<xsd:sequence>
+			<xsd:element name="PropertyDataType" type="PropertyType" />
+			<xsd:element name="ReferenceType" type="ReferenceTypeName" minOccurs="0" />
+			<xsd:element name="SimpleValueDataType" type="SimpleDataTypeName" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PartType">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="BillOfMaterials" type="BillOfMaterialsReference" minOccurs="0" />
+					<xsd:element name="ProcessPlan" type="ProcessPlanReference" minOccurs="0" />
+					<xsd:element name="Size" type="GrossDimensions" minOccurs="0" />
+					<xsd:element name="Weight" type="WeightType" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Part">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="PartType" type="PartTypeReference" minOccurs="0" />
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="ProductionStatus" type="PartProductionStatus" minOccurs="0" />
+					<xsd:element name="Location" type="LocationDefinition" minOccurs="0" />
+					<xsd:element name="BillOfMaterials" type="BillOfMaterialsReference" minOccurs="0" />
+					<xsd:element name="ProcessPlan" type="ProcessPlanReference" minOccurs="0" />
+					<xsd:element name="LastFinishedProcessStep" type="ProcessReference" minOccurs="0" />
+					<xsd:element name="Size" type="GrossDimensions" minOccurs="0" />
+					<xsd:element name="Weight" type="WeightType" minOccurs="0" />
+					<xsd:element name="Lot" type="LotInformation" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BillOfMaterials">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="PartType" type="PartTypeReference" minOccurs="0" />
+					<xsd:element name="PartInstance" type="PartReference" minOccurs="0" />
+					<xsd:element name="MainComponent" type="BillOfMaterialsComponentReference" minOccurs="0" />
+					<xsd:element name="BillOfMaterialsComponent" type="BillOfMaterialsComponent" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BillOfMaterialsComponent">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Quantity" type="Decimal" />
+					<xsd:element name="PartType" type="PartTypeReference" minOccurs="0" />
+					<xsd:element name="PartInstance" type="PartReference" minOccurs="0" />
+					<xsd:element name="SubComponent" type="BillOfMaterialsComponentReference" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="InventoryItem">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="InventoryItemClass" type="InventoryItemClassReference" />
+					<xsd:element name="QuantityOnHand" type="NonNegativeInteger" minOccurs="0" />
+					<xsd:element name="Location" type="LocationDefinition" minOccurs="0" />
+					<xsd:element name="AssociatedPart" type="PartReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="AssociatedResource" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="InventoryItemClass">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="InventoryItemType" type="InventoryItemType" />
+					<xsd:choice>
+						<xsd:element name="PartType" type="PartTypeReference" />
+						<xsd:element name="ResourceClass" type="ResourceClassReference" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceClass">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ResourceType" type="ResourceType" />
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="HourlyRate" type="CurrencyType" minOccurs="0" />
+					<xsd:element name="Size" type="GrossDimensions" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Resource">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ResourceType" type="ResourceType" />
+					<xsd:element name="ResourceClass" type="ResourceClassReference" minOccurs="0" />
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="CurrentStatus" type="ResourceStatus" minOccurs="0" />
+					<xsd:element name="CurrentSetup" type="SetupDefinitionReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="ShiftAssignment" type="CalendarReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="AssociatedResource" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="HourlyRate" type="CurrencyType" minOccurs="0" />
+					<xsd:element name="EmployeeSkill" type="SkillReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="GroupDefinition" type="ResourceGroupInformation" minOccurs="0" />
+					<xsd:element name="Size" type="GrossDimensions" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceGroupInformation">
+		<xsd:sequence>
+			<xsd:element name="ResourceGroupMember" type="ResourceGroupMember" maxOccurs="unbounded" />
+			<xsd:element name="Connection" type="Connection" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceGroupMember">
+		<xsd:complexContent>
+			<xsd:extension base="ResourceReference" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Connection">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="FromResource" type="ResourceReference" minOccurs="0" />
+					<xsd:element name="ToResource" type="ResourceReference" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SkillDefinition">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="SkillLevel" type="SkillLevel" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SkillLevel">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SetupDefinition">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="SetupResource" type="ResourceReference" />
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="SetupComponent" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="ChildSetup" type="SetupDefinitionReference" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SetupChangeoverDefinition">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="CurrentSetup" type="SetupDefinitionReference" />
+					<xsd:element name="NewSetup" type="NewSetup" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="NewSetup">
+		<xsd:complexContent>
+			<xsd:extension base="SetupDefinitionReference">
+				<xsd:sequence>
+					<xsd:element name="ChangeoverTime" type="Duration" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Calendar">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="EffectiveStartDate" type="Timestamp" minOccurs="0" />
+					<xsd:element name="EffectiveEndDate" type="Timestamp" minOccurs="0" />
+					<xsd:element name="Holiday" type="Holiday" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="Shift" type="Shift" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="ShiftSchedule" type="ShiftSchedule" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Holiday">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Date" type="Date" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Shift">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="StartTime" type="Time" />
+					<xsd:element name="Duration" type="ElapsedTimeType" />
+					<xsd:element name="ApplicableDay" type="Day" maxOccurs="unbounded" />
+					<xsd:element name="Break" type="Break" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Break">
+		<xsd:sequence>
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="StartTime" type="Time" />
+			<xsd:element name="Duration" type="ElapsedTimeType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ShiftSchedule">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="EffectiveStartDate" type="Timestamp" minOccurs="0" />
+					<xsd:element name="EffectiveEndDate" type="Timestamp" minOccurs="0" />
+					<xsd:element name="ApplicableShift" type="CalendarReference" maxOccurs="unbounded" />
+					<xsd:element name="ApplicableHoliday" type="CalendarReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="AvailabilityException" type="AvailabilityException" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AvailabilityException">
+		<xsd:sequence>
+			<xsd:element name="ExceptionDate" type="Date" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessPlan">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="PartsProduced" type="PartGroup" maxOccurs="unbounded" />
+					<xsd:element name="PartsConsumed" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="ResourcesRequired" type="ResourcesRequired" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="CostAllocationData" type="CostAllocationData" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="FirstProcess" type="ProcessReference" minOccurs="0" />
+					<xsd:element name="Process" type="Process" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Process">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="PartsProduced" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="PartsConsumed" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="ResourcesRequired" type="ResourcesRequired" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="MachineProgramInformation" type="MachineProgramData" minOccurs="0" />
+					<xsd:element name="SetupTime" type="Duration" minOccurs="0" />
+					<xsd:element name="OperationTime" type="Duration" minOccurs="0" />
+					<xsd:element name="RepetitionCount" type="Integer" minOccurs="0" />
+					<xsd:element name="CostAllocationData" type="CostAllocationData" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SpecialInstruction" type="String" minOccurs="0" />
+					<xsd:element name="ProcessConstraint" type="ProcessConstraint" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SubProcessGroup" type="ProcessGroup" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessGroup">
+		<xsd:sequence>
+			<xsd:element name="Type" type="ProcessGroupType" />
+			<xsd:element name="DecisionText" type="String" minOccurs="0" />
+			<xsd:element name="Process" type="ProcessReference" maxOccurs="unbounded" />
+			<xsd:element name="ProcessConstraint" type="ProcessConstraint" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenancePlan">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="MaintainedResource" type="ResourceReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="Periodicity" type="Duration" minOccurs="0" />
+					<xsd:element name="CostAllocationData" type="CostAllocationData" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="FirstProcess" type="MaintenanceProcessReference" minOccurs="0" />
+					<xsd:element name="MaintenanceProcess" type="MaintenanceProcess" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenanceProcess">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ResourcesRequired" type="ResourcesRequired" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="PartsConsumed" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SetupTime" type="Duration" minOccurs="0" />
+					<xsd:element name="OperationTime" type="Duration" minOccurs="0" />
+					<xsd:element name="RepetitionCount" type="Integer" minOccurs="0" />
+					<xsd:element name="CostAllocationData" type="CostAllocationData" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SpecialInstruction" type="String" minOccurs="0" />
+					<xsd:element name="ProcessConstraint" type="MaintenanceProcessConstraint" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SubProcessGroup" type="MaintenanceProcessGroup" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MaintenanceProcessGroup">
+		<xsd:sequence>
+			<xsd:element name="Type" type="ProcessGroupType" />
+			<xsd:element name="DecisionText" type="String" minOccurs="0" />
+			<xsd:element name="Process" type="MaintenanceProcessReference" maxOccurs="unbounded" />
+			<xsd:element name="ProcessConstraint" type="MaintenanceProcessConstraint" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Job">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Status" type="JobStatus" />
+					<xsd:element name="UpdateTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="RequestingParty" type="ContactInformation" minOccurs="0" />
+					<xsd:element name="PerformingParty" type="ContactInformation" minOccurs="0" />
+					<xsd:element name="AssociatedOrder" type="OrderInformationReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="Priority" type="String" minOccurs="0" />
+					<xsd:element name="PrecedenceConstraint" type="JobConstraint" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="SubJob" type="JobReference" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="PlannedEffort" type="JobEffortDescription" minOccurs="0" />
+					<xsd:element name="ActualEffort" type="JobEffortDescription" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="JobEffortDescription">
+		<xsd:sequence>
+			<xsd:element name="UpdateTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="PartsProduced" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="PartsConsumed" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="ResourcesRequired" type="ResourcesRequired" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="DueDate" type="Timestamp" minOccurs="0" />
+			<xsd:element name="ReleaseDate" type="Timestamp" minOccurs="0" />
+			<xsd:element name="StartTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="EndTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="SetupTime" type="Duration" minOccurs="0" />
+			<xsd:element name="ProcessingTime" type="Duration" minOccurs="0" />
+			<xsd:element name="ProcessPlan" type="ProcessPlanReference" minOccurs="0" />
+			<xsd:element name="CurrentProcessPlanStep" type="ProcessPlanReference" minOccurs="0" />
+			<xsd:element name="MaintenancePlan" type="MaintenancePlanReference" minOccurs="0" />
+			<xsd:element name="CurrentMaintenancePlanStep" type="MaintenanceProcessReference" minOccurs="0" />
+			<xsd:element name="CostAllocationData" type="CostAllocationData" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Note" type="String" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Event" type="Event" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Order">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Status" type="OrderStatus" />
+					<xsd:element name="UpdateTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="CustomerParty" type="ContactInformation" minOccurs="0" />
+					<xsd:element name="SupplierParty" type="ContactInformation" minOccurs="0" />
+					<xsd:element name="SpecialInstruction" type="String" minOccurs="0" />
+					<xsd:element name="TotalPrice" type="CurrencyType" minOccurs="0" />
+					<xsd:element name="DueDate" type="Date" minOccurs="0" />
+					<xsd:element name="Priority" type="String" minOccurs="0" />
+					<xsd:element name="OrderLine" type="OrderLine" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrderLine">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="UpdateTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="Status" type="OrderStatus" />
+					<xsd:element name="ItemDescription" type="String" />
+					<xsd:element name="ItemQuantity" type="Decimal" />
+					<xsd:element name="ItemPrice" type="CurrencyType" minOccurs="0" />
+					<xsd:element name="Priority" type="String" minOccurs="0" />
+					<xsd:choice>
+						<xsd:element name="ServiceDescription" type="OrderLineServiceDescription" />
+						<xsd:element name="PartDescription" type="OrderLinePartDescription" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrderLineServiceDescription">
+		<xsd:sequence>
+			<xsd:element name="ServiceIdentifier" type="String" minOccurs="0" />
+			<xsd:element name="ServiceDetails" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrderLinePartDescription">
+		<xsd:sequence>
+			<xsd:element name="PartType" type="PartTypeReference" minOccurs="0" />
+			<xsd:element name="Packaging" type="ItemPackaging" minOccurs="0" />
+			<xsd:element name="PartDetails" type="String" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Schedule">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="CreationTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="StartTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="EndTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="ScheduleItem" type="ScheduleItem" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ScheduleItem">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Status" type="JobStatus" />
+					<xsd:choice minOccurs="0">
+						<xsd:element name="AssociatedJob" type="JobReference" />
+						<xsd:element name="AssociatedOrderInformation" type="OrderInformationReference" />
+						<xsd:element name="AssociatedProcess" type="ProcessReference" />
+						<xsd:element name="AssociatedProcessPlan" type="ProcessPlanReference" />
+						<xsd:element name="AssociatedMaintenancePlan" type="MaintenancePlanReference" />
+						<xsd:element name="AssociatedMaintenanceProcess" type="MaintenanceProcessReference" />
+					</xsd:choice>
+					<xsd:element name="PlannedEffort" type="ScheduleItemEffortDescription" minOccurs="0" />
+					<xsd:element name="ActualEffort" type="ScheduleItemEffortDescription" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ScheduleItemEffortDescription">
+		<xsd:sequence>
+			<xsd:element name="UpdateTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="StartTime" type="Timestamp" />
+			<xsd:element name="EndTime" type="Timestamp" minOccurs="0" />
+			<xsd:element name="ProcessingTime" type="Duration" minOccurs="0" />
+			<xsd:element name="ResourcesUsed" type="ResourcesRequired" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="PartsUsed" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="PartsProduced" type="PartGroup" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LayoutElement">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Name" type="String" minOccurs="0" />
+					<xsd:element name="AssociatedResource" type="ResourceReference" minOccurs="0" />
+					<xsd:element name="Boundary" type="BoundaryDefinition" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LayoutObject">
+		<xsd:complexContent>
+			<xsd:extension base="LayoutElement">
+				<xsd:sequence>
+					<xsd:element name="Type" type="ResourceType" minOccurs="0" />
+					<xsd:element name="Shape" type="ShapeDescription" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Layout">
+		<xsd:complexContent>
+			<xsd:extension base="LayoutElement">
+				<xsd:sequence>
+					<xsd:element name="Placement" type="Placement" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Placement">
+		<xsd:complexContent>
+			<xsd:extension base="LayoutElementReference">
+				<xsd:sequence>
+					<xsd:element name="Location" type="Coordinate3D" />
+					<xsd:element name="Transformations" type="TransformationList" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ShapeDescription">
+		<xsd:sequence>
+			<xsd:element name="ShapeType" type="ShapeDescriptionType" />
+			<xsd:choice>
+				<xsd:element name="BasicShape" type="BasicShapeType" minOccurs="0" />
+				<xsd:element name="Graphic" type="GraphicDescriptionType" minOccurs="0" />
+				<xsd:element name="Segment" type="SegmentType" minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element name="TextualAnnotation" type="TextualAnnotation" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransformationList">
+		<xsd:sequence>
+			<xsd:element name="List" type="TransformationOperation" maxOccurs="unbounded" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TransformationOperation">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="Rotation" type="Rotation" />
+				<xsd:element name="Translation" type="Translation" />
+				<xsd:element name="Scaling" type="Scaling" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Rotation">
+		<xsd:choice>
+			<xsd:element name="XDegree" type="Decimal" minOccurs="0" />
+			<xsd:element name="YDegree" type="Decimal" minOccurs="0" />
+			<xsd:element name="ZDegree" type="Decimal" minOccurs="0" />
+			<xsd:element name="Origin" type="Coordinate3D" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="Translation">
+		<xsd:choice>
+			<xsd:element name="XOffset" type="Decimal" minOccurs="0" />
+			<xsd:element name="YOffset" type="Decimal" minOccurs="0" />
+			<xsd:element name="ZOffset" type="Decimal" minOccurs="0" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="Scaling">
+		<xsd:choice>
+			<xsd:element name="XPercent" type="Decimal" minOccurs="0" />
+			<xsd:element name="YPercent" type="Decimal" minOccurs="0" />
+			<xsd:element name="ZPercent" type="Decimal" minOccurs="0" />
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="GraphicDescription">
+		<xsd:sequence>
+			<xsd:element name="FileName" type="URI" />
+			<xsd:element name="FileType" type="String" />
+			<xsd:element name="Transformations" type="TransformationList" minOccurs="0" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ModelGraphic">
+		<xsd:complexContent>
+			<xsd:extension base="GraphicDescription">
+				<xsd:sequence>
+					<xsd:element name="GraphicType" type="String" fixed="modelGraphic" />
+					<xsd:element name="ModelUnit" type="LayoutLengthUnit" />
+					<xsd:element name="ModelDimension" type="SpatialDimension" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ImageGraphic">
+		<xsd:complexContent>
+			<xsd:extension base="GraphicDescription">
+				<xsd:sequence>
+					<xsd:element name="GraphicType" type="String" fixed="imageGraphic" />
+					<xsd:element name="ImageResolution" type="ImageResolution" />
+					<xsd:element name="ImageDimension" type="SpatialDimension" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TextualAnnotation">
+		<xsd:sequence>
+			<xsd:element name="AttachPoint" type="Coordinate3D" minOccurs="0" />
+			<xsd:element name="Text" type="String" />
+			<xsd:element name="TextAnchorLocation" type="TextAnchorLocation" minOccurs="0" />
+			<xsd:element name="Color" type="ColorDefinition" minOccurs="0" />
+			<xsd:element name="Style" type="String" minOccurs="0" />
+			<xsd:element name="TextAngle" type="Decimal" minOccurs="0" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BasicShape">
+		<xsd:sequence>
+			<xsd:element name="Height" type="Decimal" minOccurs="0" />
+			<xsd:element name="Color" type="ColorHighlight" minOccurs="0" />
+			<xsd:element name="Label" type="ShapeLabelDefinition" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Box">
+		<xsd:complexContent>
+			<xsd:extension base="BasicShape">
+				<xsd:sequence>
+					<xsd:element name="Type" type="String" fixed="box" />
+					<xsd:element name="Width" type="Decimal" />
+					<xsd:element name="Depth" type="Decimal" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Circle">
+		<xsd:complexContent>
+			<xsd:extension base="BasicShape">
+				<xsd:sequence>
+					<xsd:element name="Type" type="String" fixed="circle" />
+					<xsd:element name="Center" type="Coordinate2D" />
+					<xsd:element name="Radius" type="Decimal" />
+					<xsd:element name="Angle" type="Decimal" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Polygon">
+		<xsd:complexContent>
+			<xsd:extension base="BasicShape">
+				<xsd:sequence>
+					<xsd:element name="Type" type="String" fixed="polygon" />
+					<xsd:element name="Point" type="Coordinate2D" minOccurs="3" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SegmentShape">
+		<xsd:sequence>
+			<xsd:element name="SegmentNumber" type="Identifier" minOccurs="0" />
+			<xsd:element name="Description" type="String" minOccurs="0" />
+			<xsd:element name="Base" type="BaseLocation" />
+			<xsd:element name="Start" type="Coordinate2D" />
+			<xsd:element name="Width" type="Decimal" />
+			<xsd:element name="StartHeight" type="Decimal" minOccurs="0" />
+			<xsd:element name="EndHeight" type="Decimal" minOccurs="0" />
+			<xsd:element name="TrackWidth" type="Decimal" minOccurs="0" />
+			<xsd:element name="Color" type="ColorHighlight" minOccurs="0" />
+			<xsd:element name="ReferenceMaterial" type="ReferenceMaterialReference" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Property" type="Property" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StraightSegment">
+		<xsd:complexContent>
+			<xsd:extension base="SegmentShape">
+				<xsd:sequence>
+					<xsd:element name="Type" type="String" fixed="straight" />
+					<xsd:element name="End" type="Coordinate2D" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CurvedSegment">
+		<xsd:complexContent>
+			<xsd:extension base="SegmentShape">
+				<xsd:sequence>
+					<xsd:element name="Type" type="String" fixed="curved" />
+					<xsd:element name="RotationPoint" type="Coordinate2D" />
+					<xsd:element name="RotationAngle" type="Decimal" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExperimentSection">
+		<xsd:sequence>
+			<xsd:element name="ExperimentClass" type="ExperimentClass" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="Experiment" type="Experiment" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExperimentClass">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Experiment">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ExperimentClass" type="ExperimentClassReference" minOccurs="0" />
+					<xsd:element name="StartTime" type="Timestamp" minOccurs="0" />
+					<xsd:element name="SimulationDuration" type="ElapsedTimeType" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExperimentClassReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ExperimentClassIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExperimentReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="ExperimentIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResultSection">
+		<xsd:sequence>
+			<xsd:element name="EntityStatisticClass" type="EntityStatisticClass" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="ExperimentResult" type="ExperimentResult" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ExperimentResult">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ExperimentConfiguration" type="ExperimentReference" />
+					<xsd:element name="ProductionStart" type="Timestamp" minOccurs="0" />
+					<xsd:element name="ProductionEnd" type="Timestamp" minOccurs="0" />
+					<xsd:element name="EntityThroughput" type="EntityThroughput" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="EntityStatistic" type="EntityStatistic" minOccurs="0" maxOccurs="unbounded" />
+					<xsd:element name="EntityEventStream" type="EntityEventStream" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EntityThroughput">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Entity" type="AbstractEntityReference" />
+					<xsd:element name="Quantity" type="Decimal" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EntityStatisticClass">
+		<xsd:complexContent>
+			<xsd:extension base="UniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="ParentEntityName" type="PropertyExtensibleEntity" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EntityStatistic">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="EntityStatisticClass" type="EntityStatisticClassReference" minOccurs="0" />
+					<xsd:element name="Entity" type="AbstractEntityReference" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EntityStatisticClassReference">
+		<xsd:complexContent>
+			<xsd:extension base="AbstractEntityReference">
+				<xsd:sequence>
+					<xsd:element name="EntityStatisticClassIdentifier" type="Identifier" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EntityEventStream">
+		<xsd:complexContent>
+			<xsd:extension base="LimitedUniqueEntity">
+				<xsd:sequence>
+					<xsd:element name="Entity" type="AbstractEntityReference" />
+					<xsd:element name="Event" type="Event" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

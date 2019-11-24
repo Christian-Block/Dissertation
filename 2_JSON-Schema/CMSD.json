@@ -1,0 +1,3971 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "headerSection": {
+      "$ref": "#/definitions/HeaderSection"
+    },
+    "dataSection": {
+      "$ref": "#/definitions/DataSection"
+    },
+    "experimentSection": {
+      "$ref": "#/definitions/ExperimentSection"
+    },
+    "resultSection": {
+      "$ref": "#/definitions/ResultSection"
+    },
+    "cmsdVersion": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "cmsdVersion"
+  ],
+  "definitions": {
+    "PropertyExtensibleEntity": {
+      "enum": [
+        "LAYOUT",
+        "LAYOUT_ELEMENT",
+        "GRAPHIC_DESCRIPTION",
+        "BILL_OF_MATERIALS",
+        "LIMITED_UNIQUE_ENTITY",
+        "IDENTIFIABLE_ENTITY",
+        "UNIQUE_ENTITY",
+        "COLOR_HIGHLIGHT",
+        "SHAPE_LABEL_DEFINITON",
+        "EVENT",
+        "REFERENCE_MATERIAL",
+        "COST_ALLOCATION_DATA",
+        "DISTRIBUTION_DEFINITION",
+        "SETUP_CHANGEOVER_DEFINITION",
+        "SETUP_DEFINITION",
+        "SKILL_DEFINITION",
+        "SKILL_LEVEL",
+        "CONNECTION",
+        "RESOURCE_CLASS",
+        "MAINTENANCE_PLAN",
+        "RESOURCE",
+        "MAINTENANCE_PROCESS",
+        "PROCESS",
+        "HOLIDAY",
+        "PROCESS_PLAN",
+        "SHIFT",
+        "SHIFT_SCHEDULE",
+        "CALENDAR",
+        "SCHEDULE_ITEM_EFFORT_DESCRIPTON",
+        "SCHEDULE",
+        "SCHEDULE_ITEM",
+        "JOB",
+        "JOB_EFFORT_DESCRIPTION",
+        "ORDER",
+        "ORDER_LINE",
+        "INVENTORY_ITEM",
+        "INVENTORY_ITEM_CLASS",
+        "CURVED_SEGMENT",
+        "PART_TYPE",
+        "IMAGE_GRAPHIC",
+        "PART",
+        "SEGMENT_SHAPE",
+        "STRAIGHT_SEGMENT",
+        "MODEL_GRAPHIC",
+        "TEXTUAL_ANNOTATION",
+        "LAYOUT_OBJECT"
+      ]
+    },
+    "UnitTypeName": {
+      "enum": [
+        "AREA_UNIT",
+        "CURRENCY_UNIT",
+        "LENGTH_UNIT",
+        "POWER_UNIT",
+        "SPEED_UNIT",
+        "TEMPERATURE_UNIT",
+        "WEIGHT_UNIT",
+        "TIME_UNIT",
+        "VOLUME_UNIT"
+      ]
+    },
+    "PropertyCardinality": {
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "PropertyType": {
+      "enum": [
+        "SIMPLE",
+        "REFERENCE",
+        "STOCHASTIC"
+      ]
+    },
+    "ReferenceTypeName": {
+      "enum": [
+        "BILL_OF_MATERIALS_REFERENCE",
+        "BILL_OF_MATERIALS_COMPONENT_REFERENCE",
+        "CALENDAR_REFERENCE",
+        "DISTRIBUTION_DEFINITION_REFERENCE",
+        "INVENTORY_ITEM_CLASS_REFERENCE",
+        "INVENTORY_ITEM_REFERENCE",
+        "JOB_REFERENCE",
+        "LAYOUT_ELEMENT_REFERENCE",
+        "MAINTENANCE_PLAN_REFERENCE",
+        "MAINTENANCE_PROCESS_REFERENCE",
+        "ORDER_INFORMATION_REFERENCE",
+        "PART_REFERENCE",
+        "PART_TYPE_REFERENCE",
+        "PROCESS_PLAN_REFERENCE",
+        "PROCESS_REFERENCE",
+        "REFERENCE_MATERIAL_REFERENCE",
+        "RESOURCE_CLASS_REFERENCE",
+        "RESOURCE_REFERENCE",
+        "SCHEDULE_INFORMATION_REFERENCE",
+        "SETUP_CHANGEOVER_REFERENCE",
+        "SETUP_DEFINITION_REFERENCE",
+        "SKILL_REFERENCE"
+      ]
+    },
+    "SimpleDataTypeName": {
+      "enum": [
+        "TIME",
+        "DATE",
+        "TIMESTAMP",
+        "STRING",
+        "IDENTIFIER",
+        "URI",
+        "DECIMAL",
+        "BOOLEAN",
+        "INTEGER",
+        "NON_NEGATIVE_INTEGER",
+        "AREA_UNIT",
+        "CURRENCY_UNIT",
+        "LENGTH_UNIT",
+        "POWER_UNIT",
+        "SPEED_UNIT",
+        "TEMPERATURE_UNIT",
+        "WEIGHT_UNIT",
+        "TIME_UNIT",
+        "VOLUME_UNIT"
+      ]
+    },
+    "PropertyDataTypeDescription": {
+      "type": "object",
+      "properties": {
+        "propertyDataType": {
+          "$ref": "#/definitions/PropertyType"
+        },
+        "referenceType": {
+          "$ref": "#/definitions/ReferenceTypeName"
+        },
+        "simpleValueDataType": {
+          "$ref": "#/definitions/SimpleDataTypeName"
+        }
+      },
+      "required": [
+        "propertyDataType"
+      ]
+    },
+    "PropertyDescription": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentEntityName": {
+          "$ref": "#/definitions/PropertyExtensibleEntity"
+        },
+        "unitType": {
+          "$ref": "#/definitions/UnitTypeName"
+        },
+        "propertyCardinality": {
+          "$ref": "#/definitions/PropertyCardinality"
+        },
+        "propertyDataTypeDescription": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PropertyDataTypeDescription"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "parentEntityName",
+        "propertyDataTypeDescription"
+      ]
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "propertyDescription": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PropertyDescription"
+          }
+        }
+      },
+      "required": [
+        "propertyDescription"
+      ]
+    },
+    "CMSDDocumentReference": {
+      "type": "object",
+      "properties": {
+        "localDocumentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "documentLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "localDocumentIdentifier",
+        "documentLocation"
+      ]
+    },
+    "AreaUnit": {
+      "enum": [
+        "SQUARE_INCH",
+        "SQUARE_FOOT",
+        "SQUARE_YARD",
+        "SQUARE_CENTIMETER",
+        "SQUARE_METER",
+        "SQUARE_KILOMETER",
+        "SQUARE_MILE"
+      ]
+    },
+    "LengthUnit": {
+      "enum": [
+        "MILLIMETER",
+        "CENTIMETER",
+        "METER",
+        "KILOMETER",
+        "INCH",
+        "FOOT",
+        "YARD",
+        "MILE"
+      ]
+    },
+    "PowerUnit": {
+      "enum": [
+        "HORSEPOWER",
+        "WATT"
+      ]
+    },
+    "SpeedUnit": {
+      "enum": [
+        "FOOT_PER_SECOND",
+        "KILOMETER_PER_HOUR",
+        "METER_PER_SECOND",
+        "MILE_PER_HOUR"
+      ]
+    },
+    "TemperatureUnit": {
+      "enum": [
+        "CELSIUS",
+        "FAHRENHEIT",
+        "KELVIN"
+      ]
+    },
+    "TimeUnit": {
+      "enum": [
+        "SECOND",
+        "MINUTE",
+        "HOUR",
+        "DAY",
+        "MONTH",
+        "WEEK",
+        "YEAR"
+      ]
+    },
+    "VolumeUnit": {
+      "enum": [
+        "CUBIC_CENTIMETER",
+        "CUBIC_INCH",
+        "CUBIC_FOOT",
+        "CUBIC_METER",
+        "CUBIC_YARD",
+        "MILLILITER",
+        "GALLON",
+        "LITER",
+        "PINT",
+        "QUART",
+        "OUNCE"
+      ]
+    },
+    "WeightUnit": {
+      "enum": [
+        "OUNCE",
+        "POUND",
+        "MILLIGRAM",
+        "TON",
+        "CENTIGRAM",
+        "GRAM",
+        "KILOGRAM"
+      ]
+    },
+    "UnitDefaults": {
+      "type": "object",
+      "properties": {
+        "areaUnit": {
+          "$ref": "#/definitions/AreaUnit"
+        },
+        "lengthUnit": {
+          "$ref": "#/definitions/LengthUnit"
+        },
+        "currencyUnit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "powerUnit": {
+          "$ref": "#/definitions/PowerUnit"
+        },
+        "speedUnit": {
+          "$ref": "#/definitions/SpeedUnit"
+        },
+        "temperatureUnit": {
+          "$ref": "#/definitions/TemperatureUnit"
+        },
+        "timeUnit": {
+          "$ref": "#/definitions/TimeUnit"
+        },
+        "volumeUnit": {
+          "$ref": "#/definitions/VolumeUnit"
+        },
+        "weightUnit": {
+          "$ref": "#/definitions/WeightUnit"
+        }
+      }
+    },
+    "HeaderSection": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "creationTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metadata": {
+          "$ref": "#/definitions/Metadata"
+        },
+        "cmsdDocumentReference": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CMSDDocumentReference"
+          }
+        },
+        "unitDefaults": {
+          "$ref": "#/definitions/UnitDefaults"
+        }
+      }
+    },
+    "ReferenceMaterialReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterialIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "referenceMaterialIdentifier"
+      ]
+    },
+    "PropertyDescriptionReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "propertyDescriptionIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "propertyDescriptionIdentifier"
+      ]
+    },
+    "DistributionParameter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    "Distribution": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distributionParameter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DistributionParameter"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "distributionParameter"
+      ]
+    },
+    "AbstractEntityReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Property": {
+      "type": "object",
+      "properties": {
+        "propertyDescription": {
+          "$ref": "#/definitions/PropertyDescriptionReference"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distribution": {
+          "$ref": "#/definitions/Distribution"
+        },
+        "referenceProperty": {
+          "$ref": "#/definitions/AbstractEntityReference"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "DistributionDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "distribution": {
+          "$ref": "#/definitions/Distribution"
+        }
+      },
+      "required": [
+        "identifier",
+        "distribution"
+      ]
+    },
+    "RequiredApplication": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operatingSystem": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "ReferenceMaterial": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "onlineLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "isbn": {
+          "type": "string",
+          "minLength": 1
+        },
+        "digitalFormat": {
+          "type": "string",
+          "minLength": 1
+        },
+        "permanentStorageMedium": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physicalLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiredApplication": {
+          "$ref": "#/definitions/RequiredApplication"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "Holiday": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "identifier",
+        "date"
+      ]
+    },
+    "ElapsedTimeType": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/TimeUnit"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Day": {
+      "enum": [
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
+    "Break": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        }
+      },
+      "required": [
+        "startTime",
+        "duration"
+      ]
+    },
+    "Shift": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        },
+        "applicableDay": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Day"
+          }
+        },
+        "_break": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Break"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "startTime",
+        "duration",
+        "applicableDay"
+      ]
+    },
+    "CalendarReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "calendarIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shiftScheduleIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shiftIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holidayIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "calendarIdentifier"
+      ]
+    },
+    "AvailabilityException": {
+      "type": "object",
+      "properties": {
+        "exceptionDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "exceptionDate"
+      ]
+    },
+    "ShiftSchedule": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "effectiveStartDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effectiveEndDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "applicableShift": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CalendarReference"
+          }
+        },
+        "applicableHoliday": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CalendarReference"
+          }
+        },
+        "availabilityException": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AvailabilityException"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "applicableShift"
+      ]
+    },
+    "Calendar": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "effectiveStartDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effectiveEndDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "holiday": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Holiday"
+          }
+        },
+        "shift": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Shift"
+          }
+        },
+        "shiftSchedule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ShiftSchedule"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "SkillLevel": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "SkillDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skillLevel": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillLevel"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "ResourceType": {
+      "enum": [
+        "CARRIER",
+        "CONVEYOR",
+        "CRANE",
+        "EMPLOYEE",
+        "FIXTURE",
+        "MACHINE",
+        "PATH",
+        "POWER_AND_FREE",
+        "STATION",
+        "TOOL",
+        "TRANSPORTER",
+        "OTHER"
+      ]
+    },
+    "CurrencyType": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "GrossDimensions": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/LengthUnit"
+        },
+        "width": {
+          "type": "number"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        }
+      }
+    },
+    "ResourceClass": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "resourceType": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hourlyRate": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "size": {
+          "$ref": "#/definitions/GrossDimensions"
+        }
+      },
+      "required": [
+        "identifier",
+        "resourceType"
+      ]
+    },
+    "BillOfMaterialsReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billOfMaterialsIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "billOfMaterialsIdentifier"
+      ]
+    },
+    "ProcessPlanReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processPlanIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "processPlanIdentifier"
+      ]
+    },
+    "WeightType": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/WeightUnit"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PartType": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billOfMaterials": {
+          "$ref": "#/definitions/BillOfMaterialsReference"
+        },
+        "processPlan": {
+          "$ref": "#/definitions/ProcessPlanReference"
+        },
+        "size": {
+          "$ref": "#/definitions/GrossDimensions"
+        },
+        "weight": {
+          "$ref": "#/definitions/WeightType"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "InventoryItemType": {
+      "enum": [
+        "PART",
+        "RESOURCE"
+      ]
+    },
+    "PartTypeReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partTypeIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "partTypeIdentifier"
+      ]
+    },
+    "ResourceClassReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceClassIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "resourceClassIdentifier"
+      ]
+    },
+    "InventoryItemClass": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventoryItemType": {
+          "$ref": "#/definitions/InventoryItemType"
+        },
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "resourceClass": {
+          "$ref": "#/definitions/ResourceClassReference"
+        }
+      },
+      "required": [
+        "identifier",
+        "inventoryItemType"
+      ]
+    },
+    "ResourceStatus": {
+      "enum": [
+        "BUSY",
+        "IDLE",
+        "BROKEN",
+        "UNDER_MAINTENANCE",
+        "UNKNOWN"
+      ]
+    },
+    "SetupDefinitionReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setupDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "setupDefinitionIdentifier"
+      ]
+    },
+    "ResourceReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "resourceIdentifier"
+      ]
+    },
+    "SkillReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skillDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skillLevelIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "skillDefinitionIdentifier"
+      ]
+    },
+    "ResourceGroupMember": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "resourceIdentifier"
+      ]
+    },
+    "Connection": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "fromResource": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "toResource": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "ResourceGroupInformation": {
+      "type": "object",
+      "properties": {
+        "resourceGroupMember": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceGroupMember"
+          }
+        },
+        "connection": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Connection"
+          }
+        }
+      },
+      "required": [
+        "resourceGroupMember"
+      ]
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "resourceType": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "resourceClass": {
+          "$ref": "#/definitions/ResourceClassReference"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "currentStatus": {
+          "$ref": "#/definitions/ResourceStatus"
+        },
+        "currentSetup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetupDefinitionReference"
+          }
+        },
+        "shiftAssignment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CalendarReference"
+          }
+        },
+        "associatedResource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "hourlyRate": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "employeeSkill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillReference"
+          }
+        },
+        "groupDefinition": {
+          "$ref": "#/definitions/ResourceGroupInformation"
+        },
+        "size": {
+          "$ref": "#/definitions/GrossDimensions"
+        }
+      },
+      "required": [
+        "identifier",
+        "resourceType"
+      ]
+    },
+    "SetupDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "setupResource": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setupComponent": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "childSetup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetupDefinitionReference"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "setupResource"
+      ]
+    },
+    "DistributionDefinitionReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "distributionDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "distributionDefinitionIdentifier"
+      ]
+    },
+    "Duration": {
+      "type": "object",
+      "properties": {
+        "unit": {
+          "$ref": "#/definitions/TimeUnit"
+        },
+        "value": {
+          "type": "number"
+        },
+        "distribution": {
+          "$ref": "#/definitions/Distribution"
+        },
+        "distributionReference": {
+          "$ref": "#/definitions/DistributionDefinitionReference"
+        }
+      }
+    },
+    "NewSetup": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setupDefinitionIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "changeoverTime": {
+          "$ref": "#/definitions/Duration"
+        }
+      },
+      "required": [
+        "setupDefinitionIdentifier",
+        "changeoverTime"
+      ]
+    },
+    "SetupChangeoverDefinition": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "currentSetup": {
+          "$ref": "#/definitions/SetupDefinitionReference"
+        },
+        "newSetup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewSetup"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "currentSetup",
+        "newSetup"
+      ]
+    },
+    "PartReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "partIdentifier"
+      ]
+    },
+    "BillOfMaterialsComponentReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billOfMaterialsIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "billOfMaterialsComponentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "billOfMaterialsIdentifier",
+        "billOfMaterialsComponentIdentifier"
+      ]
+    },
+    "BillOfMaterialsComponent": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "partInstance": {
+          "$ref": "#/definitions/PartReference"
+        },
+        "subComponent": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BillOfMaterialsComponentReference"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "quantity"
+      ]
+    },
+    "BillOfMaterials": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "partInstance": {
+          "$ref": "#/definitions/PartReference"
+        },
+        "mainComponent": {
+          "$ref": "#/definitions/BillOfMaterialsComponentReference"
+        },
+        "billOfMaterialsComponent": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BillOfMaterialsComponent"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "PartGroup": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "partQuantity": {
+          "type": "number"
+        },
+        "partInstance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartReference"
+          }
+        }
+      }
+    },
+    "ResourcesRequired": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceClass": {
+          "$ref": "#/definitions/ResourceClassReference"
+        },
+        "minimumNumber": {
+          "type": "number"
+        },
+        "maximumNumber": {
+          "type": "number"
+        },
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "allowableSetup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetupDefinitionReference"
+          }
+        },
+        "requiredEmployeeSkill": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillReference"
+          }
+        }
+      }
+    },
+    "CostCategory": {
+      "enum": [
+        "INDIRECT",
+        "LABOR",
+        "MATERIAL",
+        "EQUIPMENT",
+        "OTHER"
+      ]
+    },
+    "CostType": {
+      "enum": [
+        "FIXED",
+        "VARIABLE"
+      ]
+    },
+    "VariableCostData": {
+      "type": "object",
+      "properties": {
+        "costUnit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "costRatePerUnit": {
+          "type": "number"
+        },
+        "costUnitQuantity": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "costUnit",
+        "costRatePerUnit",
+        "costUnitQuantity"
+      ]
+    },
+    "CostAllocationData": {
+      "type": "object",
+      "properties": {
+        "costCategory": {
+          "$ref": "#/definitions/CostCategory"
+        },
+        "costType": {
+          "$ref": "#/definitions/CostType"
+        },
+        "costName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "costDescription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "totalCost": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "variableCostData": {
+          "$ref": "#/definitions/VariableCostData"
+        }
+      },
+      "required": [
+        "costType",
+        "totalCost"
+      ]
+    },
+    "ProcessReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processPlanIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "processPlanIdentifier",
+        "processIdentifier"
+      ]
+    },
+    "MachineProgramData": {
+      "type": "object",
+      "properties": {
+        "machineProgramName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targetMachine": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "machineProgramLocation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "PrecedenceRelationship": {
+      "enum": [
+        "SS",
+        "SF",
+        "FS",
+        "FF"
+      ]
+    },
+    "ProcessConstraint": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precedenceRelationship": {
+          "$ref": "#/definitions/PrecedenceRelationship"
+        },
+        "lagDuration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        },
+        "lagPercentage": {
+          "type": "number"
+        },
+        "lagPartsComplete": {
+          "type": "number"
+        },
+        "predecessorProcess": {
+          "$ref": "#/definitions/ProcessReference"
+        },
+        "successorProcess": {
+          "$ref": "#/definitions/ProcessReference"
+        }
+      },
+      "required": [
+        "precedenceRelationship",
+        "predecessorProcess",
+        "successorProcess"
+      ]
+    },
+    "ProcessGroupType": {
+      "enum": [
+        "SEQUENCE",
+        "CONCURRENT",
+        "DECISION"
+      ]
+    },
+    "ProcessGroup": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ProcessGroupType"
+        },
+        "decisionText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "process": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessReference"
+          }
+        },
+        "processConstraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessConstraint"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "process"
+      ]
+    },
+    "Process": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "partsProduced": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "partsConsumed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "resourcesRequired": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourcesRequired"
+          }
+        },
+        "machineProgramInformation": {
+          "$ref": "#/definitions/MachineProgramData"
+        },
+        "setupTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "operationTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "repetitionCount": {
+          "type": "number"
+        },
+        "costAllocationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostAllocationData"
+          }
+        },
+        "specialInstruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processConstraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessConstraint"
+          }
+        },
+        "subProcessGroup": {
+          "$ref": "#/definitions/ProcessGroup"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "ProcessPlan": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "partsProduced": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "partsConsumed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "resourcesRequired": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourcesRequired"
+          }
+        },
+        "costAllocationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostAllocationData"
+          }
+        },
+        "firstProcess": {
+          "$ref": "#/definitions/ProcessReference"
+        },
+        "process": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Process"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "partsProduced"
+      ]
+    },
+    "PartProductionStatus": {
+      "enum": [
+        "UNKNOWN",
+        "WORK_IN_PROCESS",
+        "FINISHED_GOOD"
+      ]
+    },
+    "LocationDefinition": {
+      "type": "object",
+      "properties": {
+        "facilityLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "withinFacilityLocation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resourceLocation": {
+          "$ref": "#/definitions/ResourceReference"
+        }
+      }
+    },
+    "LotInformation": {
+      "type": "object",
+      "properties": {
+        "lotNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parentLotNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "lotNumber"
+      ]
+    },
+    "Part": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionStatus": {
+          "$ref": "#/definitions/PartProductionStatus"
+        },
+        "location": {
+          "$ref": "#/definitions/LocationDefinition"
+        },
+        "billOfMaterials": {
+          "$ref": "#/definitions/BillOfMaterialsReference"
+        },
+        "processPlan": {
+          "$ref": "#/definitions/ProcessPlanReference"
+        },
+        "lastFinishedProcessStep": {
+          "$ref": "#/definitions/ProcessReference"
+        },
+        "size": {
+          "$ref": "#/definitions/GrossDimensions"
+        },
+        "weight": {
+          "$ref": "#/definitions/WeightType"
+        },
+        "lot": {
+          "$ref": "#/definitions/LotInformation"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "InventoryItemClassReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventoryItemClassIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "inventoryItemClassIdentifier"
+      ]
+    },
+    "InventoryItem": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inventoryItemClass": {
+          "$ref": "#/definitions/InventoryItemClassReference"
+        },
+        "quantityOnHand": {
+          "type": "number"
+        },
+        "location": {
+          "$ref": "#/definitions/LocationDefinition"
+        },
+        "associatedPart": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartReference"
+          }
+        },
+        "associatedResource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "inventoryItemClass"
+      ]
+    },
+    "MaintenanceProcessReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maintenancePlanIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maintenanceProcessIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "maintenancePlanIdentifier",
+        "maintenanceProcessIdentifier"
+      ]
+    },
+    "MaintenanceProcessConstraint": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precedenceRelationship": {
+          "$ref": "#/definitions/PrecedenceRelationship"
+        },
+        "lagDuration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        },
+        "lagPercentage": {
+          "type": "number"
+        },
+        "lagPartsComplete": {
+          "type": "number"
+        },
+        "predecessorProcess": {
+          "$ref": "#/definitions/MaintenanceProcessReference"
+        },
+        "successorProcess": {
+          "$ref": "#/definitions/MaintenanceProcessReference"
+        }
+      },
+      "required": [
+        "precedenceRelationship",
+        "predecessorProcess",
+        "successorProcess"
+      ]
+    },
+    "MaintenanceProcessGroup": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ProcessGroupType"
+        },
+        "decisionText": {
+          "type": "string",
+          "minLength": 1
+        },
+        "process": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintenanceProcessReference"
+          }
+        },
+        "processConstraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintenanceProcessConstraint"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "process"
+      ]
+    },
+    "MaintenanceProcess": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "resourcesRequired": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourcesRequired"
+          }
+        },
+        "partsConsumed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "setupTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "operationTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "repetitionCount": {
+          "type": "number"
+        },
+        "costAllocationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostAllocationData"
+          }
+        },
+        "specialInstruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processConstraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintenanceProcessConstraint"
+          }
+        },
+        "subProcessGroup": {
+          "$ref": "#/definitions/MaintenanceProcessGroup"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "MaintenancePlan": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "maintainedResource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceReference"
+          }
+        },
+        "periodicity": {
+          "$ref": "#/definitions/Duration"
+        },
+        "costAllocationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostAllocationData"
+          }
+        },
+        "firstProcess": {
+          "$ref": "#/definitions/MaintenanceProcessReference"
+        },
+        "maintenanceProcess": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintenanceProcess"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "LayoutLengthUnit": {
+      "type": "object",
+      "properties": {
+        "lengthUnit": {
+          "$ref": "#/definitions/LengthUnit"
+        },
+        "pixelLengthUnit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "CoordinateSystem": {
+      "enum": [
+        "CENTER_BASED",
+        "UPPER_LEFT_BASED"
+      ]
+    },
+    "BoundaryDefinition": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "height": {
+          "type": "number"
+        },
+        "unit": {
+          "$ref": "#/definitions/LayoutLengthUnit"
+        },
+        "coordinateSystem": {
+          "$ref": "#/definitions/CoordinateSystem"
+        }
+      },
+      "required": [
+        "width",
+        "depth"
+      ]
+    },
+    "ShapeDescriptionType": {
+      "enum": [
+        "BASIC",
+        "GRAPHIC",
+        "SEGMENT",
+        "TEXT"
+      ]
+    },
+    "BasicShapeType": {
+      "enum": [
+        "BOX",
+        "CIRCLE",
+        "POLYGON"
+      ]
+    },
+    "GraphicDescriptionType": {
+      "enum": [
+        "MODEL_GRAPHIC",
+        "IMAGE_GRAPHIC"
+      ]
+    },
+    "SegmentType": {
+      "enum": [
+        "STRAIGHT",
+        "CURVED"
+      ]
+    },
+    "Coordinate3D": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ]
+    },
+    "TextAnchorLocation": {
+      "enum": [
+        "CENTER",
+        "UPPER_LEFT"
+      ]
+    },
+    "ColorDefinition": {
+      "type": "object",
+      "properties": {
+        "colorName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "colorHexString": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TextualAnnotation": {
+      "type": "object",
+      "properties": {
+        "attachPoint": {
+          "$ref": "#/definitions/Coordinate3D"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "textAnchorLocation": {
+          "$ref": "#/definitions/TextAnchorLocation"
+        },
+        "color": {
+          "$ref": "#/definitions/ColorDefinition"
+        },
+        "style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "textAngle": {
+          "type": "number"
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "ShapeDescription": {
+      "type": "object",
+      "properties": {
+        "shapeType": {
+          "$ref": "#/definitions/ShapeDescriptionType"
+        },
+        "basicShape": {
+          "$ref": "#/definitions/BasicShapeType"
+        },
+        "graphic": {
+          "$ref": "#/definitions/GraphicDescriptionType"
+        },
+        "segment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SegmentType"
+          }
+        },
+        "textualAnnotation": {
+          "$ref": "#/definitions/TextualAnnotation"
+        }
+      },
+      "required": [
+        "shapeType"
+      ]
+    },
+    "LayoutObject": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "associatedResource": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "boundary": {
+          "$ref": "#/definitions/BoundaryDefinition"
+        },
+        "type": {
+          "$ref": "#/definitions/ResourceType"
+        },
+        "shape": {
+          "$ref": "#/definitions/ShapeDescription"
+        }
+      },
+      "required": [
+        "identifier",
+        "boundary"
+      ]
+    },
+    "Rotation": {
+      "type": "object",
+      "properties": {
+        "xDegree": {
+          "type": "number"
+        },
+        "yDegree": {
+          "type": "number"
+        },
+        "zDegree": {
+          "type": "number"
+        },
+        "origin": {
+          "$ref": "#/definitions/Coordinate3D"
+        }
+      }
+    },
+    "Translation": {
+      "type": "object",
+      "properties": {
+        "xOffset": {
+          "type": "number"
+        },
+        "yOffset": {
+          "type": "number"
+        },
+        "zOffset": {
+          "type": "number"
+        }
+      }
+    },
+    "Scaling": {
+      "type": "object",
+      "properties": {
+        "xPercent": {
+          "type": "number"
+        },
+        "yPercent": {
+          "type": "number"
+        },
+        "zPercent": {
+          "type": "number"
+        }
+      }
+    },
+    "TransformationOperation": {
+      "type": "object",
+      "properties": {
+        "rotation": {
+          "$ref": "#/definitions/Rotation"
+        },
+        "translation": {
+          "$ref": "#/definitions/Translation"
+        },
+        "scaling": {
+          "$ref": "#/definitions/Scaling"
+        }
+      }
+    },
+    "TransformationList": {
+      "type": "object",
+      "properties": {
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransformationOperation"
+          }
+        }
+      },
+      "required": [
+        "list"
+      ]
+    },
+    "Placement": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "layoutElementIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "location": {
+          "$ref": "#/definitions/Coordinate3D"
+        },
+        "transformations": {
+          "$ref": "#/definitions/TransformationList"
+        }
+      },
+      "required": [
+        "layoutElementIdentifier",
+        "location"
+      ]
+    },
+    "Layout": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "associatedResource": {
+          "$ref": "#/definitions/ResourceReference"
+        },
+        "boundary": {
+          "$ref": "#/definitions/BoundaryDefinition"
+        },
+        "placement": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Placement"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "boundary"
+      ]
+    },
+    "OrderStatus": {
+      "enum": [
+        "CREATED",
+        "RELEASED",
+        "COMPLETED",
+        "SHIPPED",
+        "CANCELLED",
+        "UNKNOWN"
+      ]
+    },
+    "CommunicationMethod": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ContactParty": {
+      "type": "object",
+      "properties": {
+        "personName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "organizationName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "communicationMethod": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommunicationMethod"
+          }
+        }
+      }
+    },
+    "ContactInformation": {
+      "type": "object",
+      "properties": {
+        "contactParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactParty"
+          }
+        },
+        "communicationMethod": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommunicationMethod"
+          }
+        }
+      }
+    },
+    "OrderLineServiceDescription": {
+      "type": "object",
+      "properties": {
+        "serviceIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "serviceDetails": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "PerMeasuredAmountPackaging": {
+      "type": "object",
+      "properties": {
+        "measuredAmount": {
+          "type": "number"
+        },
+        "packageUnitOfMeasure": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pricePerUnit": {
+          "$ref": "#/definitions/CurrencyType"
+        }
+      },
+      "required": [
+        "measuredAmount"
+      ]
+    },
+    "PerPiecePackaging": {
+      "type": "object",
+      "properties": {
+        "piecesPerPackage": {
+          "type": "number"
+        },
+        "pricePerPiece": {
+          "$ref": "#/definitions/CurrencyType"
+        }
+      },
+      "required": [
+        "piecesPerPackage"
+      ]
+    },
+    "ItemPackaging": {
+      "type": "object",
+      "properties": {
+        "packageName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packageDescription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "perMeasuredAmountPackaging": {
+          "$ref": "#/definitions/PerMeasuredAmountPackaging"
+        },
+        "perPiecePackaging": {
+          "$ref": "#/definitions/PerPiecePackaging"
+        }
+      },
+      "required": [
+        "packageName"
+      ]
+    },
+    "OrderLinePartDescription": {
+      "type": "object",
+      "properties": {
+        "partType": {
+          "$ref": "#/definitions/PartTypeReference"
+        },
+        "packaging": {
+          "$ref": "#/definitions/ItemPackaging"
+        },
+        "partDetails": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "OrderLine": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "updateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/definitions/OrderStatus"
+        },
+        "itemDescription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "itemQuantity": {
+          "type": "number"
+        },
+        "itemPrice": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "priority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "serviceDescription": {
+          "$ref": "#/definitions/OrderLineServiceDescription"
+        },
+        "partDescription": {
+          "$ref": "#/definitions/OrderLinePartDescription"
+        }
+      },
+      "required": [
+        "identifier",
+        "status",
+        "itemDescription",
+        "itemQuantity"
+      ]
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/OrderStatus"
+        },
+        "updateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "customerParty": {
+          "$ref": "#/definitions/ContactInformation"
+        },
+        "supplierParty": {
+          "$ref": "#/definitions/ContactInformation"
+        },
+        "specialInstruction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "totalPrice": {
+          "$ref": "#/definitions/CurrencyType"
+        },
+        "dueDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "orderLine": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderLine"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "status",
+        "orderLine"
+      ]
+    },
+    "JobStatus": {
+      "enum": [
+        "RELEASED",
+        "STARTED",
+        "UNKNOWN",
+        "COMPLETED",
+        "CANCELLED",
+        "BLOCKED"
+      ]
+    },
+    "OrderInformationReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "orderIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "orderLineIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "orderIdentifier"
+      ]
+    },
+    "JobReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "jobIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "jobIdentifier"
+      ]
+    },
+    "JobConstraint": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precedenceRelationship": {
+          "$ref": "#/definitions/PrecedenceRelationship"
+        },
+        "lagDuration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        },
+        "lagPercentage": {
+          "type": "number"
+        },
+        "lagPartsComplete": {
+          "type": "number"
+        },
+        "predecessorJob": {
+          "$ref": "#/definitions/JobReference"
+        },
+        "successorJob": {
+          "$ref": "#/definitions/JobReference"
+        }
+      },
+      "required": [
+        "precedenceRelationship",
+        "predecessorJob",
+        "successorJob"
+      ]
+    },
+    "MaintenancePlanReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "maintenancePlanIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "maintenancePlanIdentifier"
+      ]
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "sequenceNumber": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "minLength": 1
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      }
+    },
+    "JobEffortDescription": {
+      "type": "object",
+      "properties": {
+        "updateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "partsProduced": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "partsConsumed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "resourcesRequired": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourcesRequired"
+          }
+        },
+        "dueDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "releaseDate": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "setupTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "processingTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "processPlan": {
+          "$ref": "#/definitions/ProcessPlanReference"
+        },
+        "currentProcessPlanStep": {
+          "$ref": "#/definitions/ProcessPlanReference"
+        },
+        "maintenancePlan": {
+          "$ref": "#/definitions/MaintenancePlanReference"
+        },
+        "currentMaintenancePlanStep": {
+          "$ref": "#/definitions/MaintenanceProcessReference"
+        },
+        "costAllocationData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CostAllocationData"
+          }
+        },
+        "note": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      }
+    },
+    "Job": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "updateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requestingParty": {
+          "$ref": "#/definitions/ContactInformation"
+        },
+        "performingParty": {
+          "$ref": "#/definitions/ContactInformation"
+        },
+        "associatedOrder": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrderInformationReference"
+          }
+        },
+        "priority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "precedenceConstraint": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobConstraint"
+          }
+        },
+        "subJob": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobReference"
+          }
+        },
+        "plannedEffort": {
+          "$ref": "#/definitions/JobEffortDescription"
+        },
+        "actualEffort": {
+          "$ref": "#/definitions/JobEffortDescription"
+        }
+      },
+      "required": [
+        "identifier",
+        "status"
+      ]
+    },
+    "ScheduleItemEffortDescription": {
+      "type": "object",
+      "properties": {
+        "updateTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "processingTime": {
+          "$ref": "#/definitions/Duration"
+        },
+        "resourcesUsed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourcesRequired"
+          }
+        },
+        "partsUsed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "partsProduced": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartGroup"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      },
+      "required": [
+        "startTime"
+      ]
+    },
+    "ScheduleItem": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "associatedJob": {
+          "$ref": "#/definitions/JobReference"
+        },
+        "associatedOrderInformation": {
+          "$ref": "#/definitions/OrderInformationReference"
+        },
+        "associatedProcess": {
+          "$ref": "#/definitions/ProcessReference"
+        },
+        "associatedProcessPlan": {
+          "$ref": "#/definitions/ProcessPlanReference"
+        },
+        "associatedMaintenancePlan": {
+          "$ref": "#/definitions/MaintenancePlanReference"
+        },
+        "associatedMaintenanceProcess": {
+          "$ref": "#/definitions/MaintenanceProcessReference"
+        },
+        "plannedEffort": {
+          "$ref": "#/definitions/ScheduleItemEffortDescription"
+        },
+        "actualEffort": {
+          "$ref": "#/definitions/ScheduleItemEffortDescription"
+        }
+      },
+      "required": [
+        "identifier",
+        "status"
+      ]
+    },
+    "Schedule": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "creationTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "endTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scheduleItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ScheduleItem"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "DataSection": {
+      "type": "object",
+      "properties": {
+        "distributionDefinition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DistributionDefinition"
+          }
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterial"
+          }
+        },
+        "calendar": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Calendar"
+          }
+        },
+        "skillDefinition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SkillDefinition"
+          }
+        },
+        "resourceClass": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceClass"
+          }
+        },
+        "partType": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartType"
+          }
+        },
+        "inventoryItemClass": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InventoryItemClass"
+          }
+        },
+        "resource": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Resource"
+          }
+        },
+        "setupDefinition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetupDefinition"
+          }
+        },
+        "setupChangeoverDefinition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SetupChangeoverDefinition"
+          }
+        },
+        "billOfMaterials": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BillOfMaterials"
+          }
+        },
+        "processPlan": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProcessPlan"
+          }
+        },
+        "part": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Part"
+          }
+        },
+        "inventoryItem": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InventoryItem"
+          }
+        },
+        "maintenancePlan": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintenancePlan"
+          }
+        },
+        "layoutObject": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LayoutObject"
+          }
+        },
+        "layout": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Layout"
+          }
+        },
+        "order": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Order"
+          }
+        },
+        "job": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Job"
+          }
+        },
+        "schedule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schedule"
+          }
+        }
+      }
+    },
+    "ExperimentClass": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "ExperimentClassReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "experimentClassIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "experimentClassIdentifier"
+      ]
+    },
+    "Experiment": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "experimentClass": {
+          "$ref": "#/definitions/ExperimentClassReference"
+        },
+        "startTime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "simulationDuration": {
+          "$ref": "#/definitions/ElapsedTimeType"
+        }
+      },
+      "required": [
+        "identifier"
+      ]
+    },
+    "ExperimentSection": {
+      "type": "object",
+      "properties": {
+        "experimentClass": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExperimentClass"
+          }
+        },
+        "experiment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Experiment"
+          }
+        }
+      },
+      "required": [
+        "experiment"
+      ]
+    },
+    "EntityStatisticClass": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "parentEntityName": {
+          "$ref": "#/definitions/PropertyExtensibleEntity"
+        }
+      },
+      "required": [
+        "identifier",
+        "parentEntityName"
+      ]
+    },
+    "ExperimentReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "experimentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "experimentIdentifier"
+      ]
+    },
+    "EntityThroughput": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "entity": {
+          "$ref": "#/definitions/AbstractEntityReference"
+        },
+        "quantity": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "identifier",
+        "entity"
+      ]
+    },
+    "EntityStatisticClassReference": {
+      "type": "object",
+      "properties": {
+        "documentIdentifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entityStatisticClassIdentifier": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "entityStatisticClassIdentifier"
+      ]
+    },
+    "EntityStatistic": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "entityStatisticClass": {
+          "$ref": "#/definitions/EntityStatisticClassReference"
+        },
+        "entity": {
+          "$ref": "#/definitions/AbstractEntityReference"
+        }
+      },
+      "required": [
+        "identifier",
+        "entity"
+      ]
+    },
+    "EntityEventStream": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "entity": {
+          "$ref": "#/definitions/AbstractEntityReference"
+        },
+        "event": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Event"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "entity",
+        "event"
+      ]
+    },
+    "ExperimentResult": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "referenceMaterial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ReferenceMaterialReference"
+          }
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Property"
+          }
+        },
+        "experimentConfiguration": {
+          "$ref": "#/definitions/ExperimentReference"
+        },
+        "productionStart": {
+          "type": "string",
+          "minLength": 1
+        },
+        "productionEnd": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entityThroughput": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityThroughput"
+          }
+        },
+        "entityStatistic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityStatistic"
+          }
+        },
+        "entityEventStream": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityEventStream"
+          }
+        }
+      },
+      "required": [
+        "identifier",
+        "experimentConfiguration"
+      ]
+    },
+    "ResultSection": {
+      "type": "object",
+      "properties": {
+        "entityStatisticClass": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EntityStatisticClass"
+          }
+        },
+        "experimentResult": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ExperimentResult"
+          }
+        }
+      }
+    }
+  }
+}
